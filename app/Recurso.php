@@ -20,6 +20,7 @@ class Recurso extends Model
     }
     public function comentario()
     {
+      // se requirio añadir una foreng key
       return $this->belongsTo('App\Comentario', 'comentarios_id');
     }
 }

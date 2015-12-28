@@ -11,11 +11,18 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Publicacion::class, function (Faker\Generator $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->email,
-        'password' => bcrypt(str_random(10)),
-        'remember_token' => str_random(10),
+        'titulo' => $faker->sentence($nbWords = 4),
+        'descripcion_corta' => $faker->sentence($nbWords = 6),
+        'descripcion_larga' => $faker->sentence($nbWords = 20),
+    ];
+});
+
+$factory->define(App\Visita::class, function (Faker\Generator $faker) {
+    return [
+        'fechahora' => $faker->dateTime($max = 'now'),
+        'ip' => $faker->ipv4(),
+        'publicaciones_id' => $faker->numberBetween($min = 1, $max = 51),
     ];
 });

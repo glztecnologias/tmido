@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tipo_publicacion extends Model
+class Categoria extends Model
 {
     //
-    protected $table = 'tipo_publicaciones';
+    protected $table = 'categorias';
     public $timestamps = false;
     public function publicaciones()
     {
-        return $this->hasMany('App\Publicacion', 'tipo_publicacion_id');
+        return $this->hasMany('App\Publicacion', 'categoria_id');
     }
 }

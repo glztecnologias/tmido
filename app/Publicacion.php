@@ -10,6 +10,12 @@ class Publicacion extends Model
     protected $table = 'publicaciones';
     public $timestamps = false;
 
+    public function categoria() //relacion con tipo de publicacion
+    {
+        return $this->belongsTo('App\Categoria');
+    }
+
+
     public function tipo_publicacion() //relacion con tipo de publicacion
     {
         return $this->belongsTo('App\Tipo_publicacion');

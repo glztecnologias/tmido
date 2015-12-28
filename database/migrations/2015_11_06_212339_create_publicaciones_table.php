@@ -22,6 +22,7 @@ class CreatePublicacionesTable extends Migration
             $table->integer('cuenta_usuario_id')->unsigned()->nullable();
             $table->integer('tipo_publicacion_id')->unsigned();
             $table->integer('competencia_id')->unsigned()->nullable();
+            $table->integer('categoria_id')->unsigned()->nullable();
             $table->timestamps();
             $table->index(['titulo', 'f_inicio', 'f_termino']);
         });

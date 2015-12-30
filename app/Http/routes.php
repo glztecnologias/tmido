@@ -18,13 +18,16 @@ Route::get('/', function () {
 Route::get('/publicaciones', function()
 {
   $publicaciones = App\Publicacion::orderBy('contador', 'desc')->take(9)->get();
-  return view('publicaciones.index', compact('publicaciones'));
+  $categorias = App\Categoria::All();
+  return view('publicaciones.index', compact('publicaciones','categorias'));
 });
 
 Route::get('/publicaciones/{id}', function($id)
 {
   $publicacion = App\Publicacion::find($id);
-  return $publicacion;
+ return view('ficha.index', compact('publicacion'));
+//  return $publicacion;
+
 });
 
 Route::resource('/admin/publicaciones', 'PublicacionController');

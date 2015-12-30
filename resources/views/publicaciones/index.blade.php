@@ -33,7 +33,15 @@ $(document).ready(function() {
 	});
 });
 </script>
+<style>
+.fichaCategoria
+{
+	float:right;
+	color:black;
+	font-size:11px;
+}
 
+</style>
 
 </head>
 
@@ -67,10 +75,11 @@ $(document).ready(function() {
     <form>
       <input name="search" type="text" id="search" class="cinInput" required>
       <select name="categoria" size="1" id="categoria" class="selectyze">
-        <option value="-1">Seleccione categoría</option>
-        <option value="categoría 1">Categoría 1</option>
-        <option value="categoría 2">Categoría 2</option>
-        <option value="categoría 3">Categoría 3</option>
+        <option value="all">Todas las categorias</option>
+@foreach($categorias as $categoria)
+				<option value="{{ $categoria->id }}">{{ $categoria->nombre }}</option>
+
+@endforeach
       </select>
       <input type="image" name="botonBuscar" id="botonBuscar" src="http://www.teohilfe.cl/clientes/tmido/imag/boton_buscar.png" class="cinButton">
     </form>
@@ -103,11 +112,14 @@ $(document).ready(function() {
 @forelse($publicaciones as $publicacion)
     <div class="ficha">
          <img src="{{ $publicacion->url_foto }}" alt="" style="height:141px">
-         <section class="fichaBackground1">
+         <section  style="background: {{ $publicacion->categoria->descripcion }} none repeat scroll 0% 0%;">
          <p class="fichaNombre">{{ $publicacion->titulo }}</p>
          <p class="fichaPregunta">{{ $publicacion->descripcion_corta }}</p>
       </section>
-         <p class="fichaVisitas">{{ $publicacion->contador }} Visitas</p>
+         <p class="fichaVisitas">{{ $publicacion->contador }} Visitas
+				<span class="fichaCategoria">{{ $publicacion->categoria->nombre }}</span>
+				 </p>
+
          <a href="/publicaciones/{{ $publicacion->id }}" class="fichaOpina tooltip" title="¡Opina tú también!">¡Opina tú también!</a>
    </div>
 @empty

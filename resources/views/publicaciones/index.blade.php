@@ -3,18 +3,19 @@
 <head>
 <meta charset="utf-8">
 <title>T-Mido</title>
-<link type="image/x-icon" href="imag/favicon.ico" rel="shortcut icon" />
-<link type="image/x-icon" href="imag/favicon.ico" rel="icon" />
-<link rel="apple-touch-icon" href="imag/ico57.png" sizes="57x57">
-<link rel="apple-touch-icon" href="imag/ico72.png" sizes="72x72">
-<link rel="apple-touch-icon" href="imag/ico76.png" sizes="76x76">
-<link rel="apple-touch-icon" href="imag/ico114.png" sizes="114x114">
-<link rel="apple-touch-icon" href="imag/ico120.png" sizes="120x120">
-<link rel="apple-touch-icon" href="imag/ico144.png" sizes="144x144">
-<link rel="apple-touch-icon" href="imag/ico152.png" sizes="152x152">
+<link type="image/x-icon" href="http://www.teohilfe.cl/clientes/tmido/imag/favicon.ico" rel="shortcut icon" />
+<link type="image/x-icon" href="http://www.teohilfe.cl/clientes/tmido/imag/favicon.ico" rel="icon" />
+<link rel="apple-touch-icon" href="http://www.teohilfe.cl/clientes/tmido/imag/ico57.png" sizes="57x57">
+<link rel="apple-touch-icon" href="http://www.teohilfe.cl/clientes/tmido/imag/ico72.png" sizes="72x72">
+<link rel="apple-touch-icon" href="http://www.teohilfe.cl/clientes/tmido/imag/ico76.png" sizes="76x76">
+<link rel="apple-touch-icon" href="http://www.teohilfe.cl/clientes/tmido/imag/ico114.png" sizes="114x114">
+<link rel="apple-touch-icon" href="http://www.teohilfe.cl/clientes/tmido/imag/ico120.png" sizes="120x120">
+<link rel="apple-touch-icon" href="http://www.teohilfe.cl/clientes/tmido/imag/ico144.png" sizes="144x144">
+<link rel="apple-touch-icon" href="http://www.teohilfe.cl/clientes/tmido/imag/ico152.png" sizes="152x152">
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
 <link href="http://www.teohilfe.cl/clientes/tmido/css/tmido.css" rel="stylesheet" type="text/css">
 <link href="http://www.teohilfe.cl/clientes/tmido/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <link href="http://www.teohilfe.cl/clientes/tmido/css/Selectyze.jquery.css" rel="stylesheet" type="text/css">
 <link href="http://www.teohilfe.cl/clientes/tmido/css/tooltipster.css" rel="stylesheet" type="text/css" />
 <script src="http://www.teohilfe.cl/clientes/tmido/js/jquery-1.11.3.min.js"></script>
@@ -93,10 +94,14 @@ $(document).ready(function() {
 	<div id="orangeMensaje">
     <img src="http://www.teohilfe.cl/clientes/tmido/imag/ico_exclamacion.png" width="5" height="21" alt="!">
     <p class="orangeGanador">Ganador del Mes</p>
-    <p>1.- Eugenio O. Pino</p>
-    <p>2.- Manuel Segundo Albornoz</p>
-    <p>3.- Wolfgang Siegfried Peña</p>
-    <a href="javascript:void(0);">ver ranking del mes y premios</a>
+@forelse($usuarios_ranking as $ganador=> $nom)
+		<p>{{$ganador+1}}.- {{$nom['nombres']}} {{$nom['apellidos']}}</p>
+  <!--  <p>2.- Manuel Segundo Albornoz</p>
+    <p>3.- Wolfgang Siegfried Peña</p>-->
+		@empty
+		  <p>Proximamente!</p>
+		@endforelse
+		<a href="javascript:void(0);">ver ranking del mes y premios</a>
     </div>
 </div>
     <div id="contenido"  class="clearfix fondoHome">

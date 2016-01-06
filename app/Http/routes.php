@@ -19,7 +19,9 @@ Route::get('/publicaciones', function()
 {
   $publicaciones = App\Publicacion::orderBy('contador', 'desc')->take(9)->get();
   $categorias = App\Categoria::All();
-  return view('publicaciones.index', compact('publicaciones','categorias'));
+  $usuarios_ranking = App\Cuenta_usuario::orderBy('puntaje_participa', 'desc')->take(3)->get();
+  
+  return view('publicaciones.index', compact('publicaciones','categorias','usuarios_ranking'));
 });
 
 Route::get('/publicaciones/{id}', function($id)

@@ -29,6 +29,12 @@ class CreateCuentaUsuarioTable extends Migration
             $table->string('facebook', 45);
             $table->string('google', 45);
             $table->integer('tipo_usuario_id')->unsigned();
+            $table->integer('cont_megusta')->unsigned();
+            $table->integer('cont_nomegusta')->unsigned();
+            $table->integer('cont_comenta')->unsigned();
+            $table->integer('cont_comparte')->unsigned();
+            $table->integer('cont_evalua')->unsigned();
+            $table->integer('cont_publica')->unsigned();
             $table->timestamps();
             $table->index(['rut', 'email', 'dni', 'sexo', 'comuna', 'ciudad', 'pais']);
 

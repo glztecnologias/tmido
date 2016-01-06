@@ -23,6 +23,16 @@ class CreatePublicacionesTable extends Migration
             $table->integer('tipo_publicacion_id')->unsigned();
             $table->integer('competencia_id')->unsigned()->nullable();
             $table->integer('categoria_id')->unsigned()->nullable();
+
+            $table->integer('act_megusta')->unsigned(); //0 inactivo 1 activo
+            $table->integer('act_comparte')->unsigned(); //0 inactivo 1 activo
+            $table->integer('act_valoracion')->unsigned();//0 inactivo 1 activo
+            $table->integer('act_comentarios')->unsigned();//0 inactivo 1 activo
+            $table->integer('act_comentario_recurso')->unsigned();//0 inactivo 1 activo
+            $table->integer('act_graficos')->unsigned();//0 inactivo 1 activo
+            $table->integer('act_evaluacion')->unsigned();//0 inactivo 1 activo
+
+            $table->integer('estado')->unsigned();//0 inactivo 1 activo
             $table->timestamps();
             $table->index(['titulo', 'f_inicio', 'f_termino']);
         });

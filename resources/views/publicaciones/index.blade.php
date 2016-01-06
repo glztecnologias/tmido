@@ -238,8 +238,84 @@ $(document).ready(function() {
       <h3>Político más rechazado</h3>
       <a href="#">ver más...</a>
       </section></div>
-    <h1><i class="fa fa-thumbs-up tituloPulgar"></i>Más Valorados</h1>
-        <div class="ficha">
+
+		<h1><i class="fa fa-thumbs-up tituloPulgar"></i>Más Valorados</h1>
+
+
+		@forelse($mas_val as $num=> $publicacion_val)
+     @if ($num==0)
+		<div class="ficha">
+	 	<img src="{{ $publicacion_val->url_foto}}" alt="" style="height:141px">
+	 	<section  style="background: {{ $publicacion_val->categoria->descripcion }} none repeat scroll 0% 0%;">
+	 	<p class="fichaNombre">{{$publicacion_val['titulo']}}</p>
+	 	<p class="fichaPregunta">{{$publicacion_val['descripcion_corta']}}</p>
+	 	</section>
+	 	<p class="fichaK"><i class="fa fa-star estrellita"></i>{{$publicacion_val['valoracion']}}
+			<span class="fichaCategoria">{{ $publicacion_val->categoria->nombre }}</span>
+		</p>
+
+	 	<a href="/publicaciones/{{ $publicacion_val->id }}" class="fichaOpina tooltip" title="¡Opina tú también!">¡Opina tú también!</a></div>
+		 @endif
+				@empty
+				  <p>Sin Datos!</p>
+				@endforelse
+
+		@forelse($mas_megusta as $numx=> $publicacion_mg)
+				 @if ($numx==0)
+				 <div class="ficha">
+					 <img src="{{ $publicacion_mg['url_foto'] }}" alt="{{$publicacion_mg['titulo']}}" style="height:141px">
+			 	 	<section  style="background: {{ $publicacion_mg->categoria->descripcion }} none repeat scroll 0% 0%;">
+				 <p class="fichaNombre">{{$publicacion_mg['titulo']}}</p>
+				 <p class="fichaPregunta">{{$publicacion_mg['descripcion_corta']}}</p>
+				 </section>
+				 <p class="fichaK"><i class="fa fa-thumbs-up tituloPulgar"></i>{{$publicacion_mg['neto_megusta']}}
+					 <span class="fichaCategoria">{{ $publicacion_mg->categoria->nombre }}</span>
+				 </p>
+				 <a href="/publicaciones/{{ $publicacion_mg->id }}" class="fichaOpina tooltip" title="¡Opina tú también!">¡Opina tú también!</a>
+				 </div>
+				 @endif
+						@empty
+							<p>Sin Datos!</p>
+						@endforelse
+						@forelse($mas_val as $num=> $publicacion_val)
+				     @if ($num==1)
+						<div class="ficha">
+					 	<img src="{{ $publicacion_val['url_foto'] }}" alt="{{$publicacion_val['titulo']}}" style="height:141px">
+					 	<section  style="background: {{ $publicacion_val->categoria->descripcion }} none repeat scroll 0% 0%;">
+					 	<p class="fichaNombre">{{$publicacion_val['titulo']}}</p>
+					 	<p class="fichaPregunta">{{$publicacion_val['descripcion_corta']}}</p>
+					 	</section>
+					 	<p class="fichaK"><i class="fa fa-star estrellita"></i>{{$publicacion_val['valoracion']}}
+							<span class="fichaCategoria">{{ $publicacion_val->categoria->nombre }}</span>
+						</p>
+
+					 	<a href="/publicaciones/{{ $publicacion_val->id }}" class="fichaOpina tooltip" title="¡Opina tú también!">¡Opina tú también!</a></div>
+						 @endif
+								@empty
+								  <p>Sin Datos!</p>
+								@endforelse
+
+						@forelse($mas_megusta as $numx=> $publicacion_mg)
+								 @if ($numx==1)
+								 <div class="ficha">
+									 <img src="{{ $publicacion_mg['url_foto'] }}" alt="{{$publicacion_mg['titulo']}}" style="height:141px">
+							 	 	<section  style="background: {{ $publicacion_mg->categoria->descripcion }} none repeat scroll 0% 0%;">
+								 <p class="fichaNombre">{{$publicacion_mg['titulo']}}</p>
+								 <p class="fichaPregunta">{{$publicacion_mg['descripcion_corta']}}</p>
+								 </section>
+								 <p class="fichaK"><i class="fa fa-thumbs-up tituloPulgar"></i>{{$publicacion_mg['neto_megusta']}}
+									 <span class="fichaCategoria">{{ $publicacion_mg->categoria->nombre }}</span>
+								 </p>
+								 <a href="/publicaciones/{{ $publicacion_mg->id }}" class="fichaOpina tooltip" title="¡Opina tú también!">¡Opina tú también!</a>
+								 </div>
+								 @endif
+										@empty
+											<p>Sin Datos!</p>
+										@endforelse
+
+
+				<!--
+				<div class="ficha">
         <img src="http://www.teohilfe.cl/clientes/tmido/imag/foto_delrio.jpg" alt="Tolerancia Cero">
         <section class="fichaBackground2">
         <p class="fichaNombre">Tolerancia Cero</p>
@@ -277,6 +353,7 @@ $(document).ready(function() {
         <p class="fichaK"><i class="fa fa-thumbs-up tituloPulgar"></i>100 k</p>
         <a href="ficha.php" class="fichaOpina tooltip" title="¡Opina tú también!">¡Opina tú también!</a>
       </div>
+		-->
     </div>
 
     </div>

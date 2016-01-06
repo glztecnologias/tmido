@@ -16,8 +16,9 @@ class AddOtrosToPublicaciones extends Migration
             //
             $table->integer('megusta')->unsigned();
             $table->integer('nomegusta')->unsigned();
+            $table->integer('neto_megusta'); //al votar se procesa y registra al final aca
             $table->integer('comparte')->unsigned();
-            $table->decimal('valoracion')->unsigned();
+            $table->decimal('valoracion')->unsigned(); //al valorar se procesa y registra al final aca
             $table->string('url_foto', 350);
         });
     }

@@ -1,0 +1,51 @@
+@charset "utf-8";
+/* CSS Star Rating */
+
+#ranking { background:#FFF;
+	color:#1C5155;
+	font-size:12px;
+	font-weight:700;
+}
+#ranking label {
+	color:#D32C2C;
+	padding:0 0 0 5px;
+}
+#ranking button {
+		background:#339299;
+		font-size:13px;
+		font-weight:700;
+		color:#FFF;
+		text-transform:uppercase;
+		text-align:center;
+		display:block;
+		float:right;
+		width:231px;
+		padding:11px 0 10px 0;
+		margin:15px 0 10px 0;
+		border:none;
+		cursor:pointer;
+		border-radius: 4px;
+		-moz-border-radius: 4px;
+		-webkit-border-radius: 4px;
+		-khtml-border-radius: 4px;
+}
+#ranking button:hover {
+	background:#D42D2C;
+}
+#ranking button i {
+	margin:0 0 0 0;
+}
+
+/* class */
+#ranking .franjaEstrellas {
+	background:#ECF5F6;
+	margin:3px 0 6px 0;
+	padding:2px 6px;
+}
+#ranking .franjaEstrellas p {
+	display:inline;
+	margin:0 37px 0 0;
+}
+#ranking .franjaEstrellas p i {
+	color:#F90;
+}

@@ -1,0 +1,98 @@
+/************************************************************************
+*************************************************************************
+@Name :       	Selectyze - jQuery Plugin CSS
+@Revison :    	1.0
+@Date : 		19/12/2011
+@Author:     	Mickael SURREL - ALPIXEL Agency - (www.myjqueryplugins.com - www.alpixel.fr) 
+@License :		 Open Source - MIT License : http://www.opensource.org/licenses/mit-license.php
+ 
+**************************************************************************
+*************************************************************************/
+
+/***************************/
+/** Common to every theme **/
+/***************************/
+.DivSelectyze {
+	position:relative;
+	/* width:253px; */
+	
+	float:left;
+}
+.DivSelectyze .selectyzeValue {
+	position:relative;
+	z-index:10;
+	display:block;
+	text-decoration:none;
+}
+.DivSelectyze .selectyzeValue:focus {
+	box-shadow:#339299 0px 0px 4px;
+	-moz-box-shadow:#339299 0px 0px 4px;
+	-webkit-box-shadow:#339299 0px 0px 4px;
+}
+.DivSelectyze ul {
+	list-style:none;
+}
+.DivSelectyze .UlSelectize {
+	position:absolute;
+	z-index:99;
+	display:none;
+}
+.DivSelectyze li a {
+	display:block;
+	margin:0px;
+	padding:4px 9px 3px 9px;
+	margin:0px;
+	/* border-top:solid 1px #FFF; */
+}
+.DivSelectyze li a:hover {
+	text-decoration:none;
+	
+}
+/****************/
+/* Tema paso1 */
+
+.selectyzeValue {
+	font:11px;
+	color:#722277;
+	background: url(../imag/input_fondo_buscar2.png) no-repeat left top;
+	width:150px;
+	height:23px;
+	margin:9px 14px 0 0;
+	padding:6px 0 0 10px;
+}
+.selectyzeValue:hover {
+	text-decoration:none;
+}
+.UlSelectize {
+	
+	background-color:#FFF;
+	width:158px;
+	padding:2px 0 0 0;
+	border:solid 1px #333;
+	border-top:none;
+	top:33px;
+	left:0px;
+	overflow-x:hidden;
+	overflow-y:auto;
+	border-bottom-right-radius: 2px;
+	border-bottom-left-radius: 2px;
+	-moz-border-radius-bottomright: 2px;
+	-moz-border-radius-bottomleft: 2px;
+	-ms-border-radius-bottomleft: 2px;
+	-ms-border-radius-bottomright: 2px;
+	-webkit-border-bottom-right-radius: 2px;
+	-webkit-border-bottom-left-radius: 2px;
+	-khtml-border-radius-bottomleft:2px;
+	-khtml-border-radius-bottomright:2px;
+
+}
+.UlSelectize li a {font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+	font:11px;
+	color:#722277;
+	width:140px;
+	float:none;
+}
+.UlSelectize li a:hover {
+	text-decoration:none;
+	background:#E6E9EA;
+}

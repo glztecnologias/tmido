@@ -14,4 +14,12 @@ class Cuenta_usuario extends Model
     {
         return $this->belongsTo('App\Tipo_usuario');
     }
+
+    //consultas...
+
+    public static function tomar_tres_ranking_participacion()
+    {
+      return Cuenta_usuario::orderBy('puntaje_participa', 'desc')->take(3)->get();
+
+    }
 }

@@ -135,6 +135,8 @@ $(document).ready(function() {
     </form>
   </div>
 </div>
+
+
 <!--contenedor-->
 <div id="contenedor">
   <hr noshade class="hr_home">

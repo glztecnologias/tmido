@@ -13,29 +13,24 @@
 
 Route::get('/', function () {
     return redirect('publicaciones');
+  //  return view('inicio',['nombre'=>'Daniel']);
+  //return view('registro.index',);
 });
+Route::get('/registro','PublicoController@muestra_registro');
 
-Route::get('/publicaciones', function()
-{
-  $publicaciones = App\Publicacion::orderBy('contador', 'desc')->take(9)->get();
+Route::get('/publicaciones','PublicoController@index');
 
-  $mas_val = App\Publicacion::orderBy('valoracion', 'desc')->take(2)->get();
-  $mas_megusta = App\Publicacion::orderBy('neto_megusta', 'desc')->take(2)->get();
-  
-  $categorias = App\Categoria::All();
-  $usuarios_ranking = App\Cuenta_usuario::orderBy('puntaje_participa', 'desc')->take(3)->get();
-
-  return view('publicaciones.index', compact('publicaciones','categorias','usuarios_ranking','mas_val','mas_megusta'));
-});
-
-Route::get('/publicaciones/{id}', function($id)
-{
-  $publicacion = App\Publicacion::find($id);
- return view('ficha.index', compact('publicacion'));
-//  return $publicacion;
-
-});
+Route::get('/publicaciones/{id}', ['middleware' => 'VisitaPublicacion', 'uses' => 'PublicoController@show']);
 
 Route::resource('/admin/publicaciones', 'PublicacionController');
 
 Route::resource('/admin', 'AdminController');
+
+// Authentication routes...
+
+Route::post('ingreso/login', 'IngresoController@postLogin');
+Route::get('ingreso/logout', 'IngresoController@getLogout');
+
+// Registration routes...
+Route::get('ingreso/register', 'IngresoController@getRegister');
+Route::post('ingreso/register', 'IngresoController@postRegister');

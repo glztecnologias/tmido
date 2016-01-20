@@ -14,7 +14,7 @@ class CreateValoracionTable extends Migration
     {
         Schema::create('valoracion', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('puntaje', 45);
+            $table->decimal('puntaje',2,1);
             $table->dateTime('fechahora');
             $table->integer('cuenta_usuario_id')->unsigned()->nullable();
             $table->integer('publicaciones_id')->unsigned()->nullable();

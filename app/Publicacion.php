@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Categoria;
 class Publicacion extends Model
 {
     //
@@ -14,7 +14,6 @@ class Publicacion extends Model
     {
         return $this->belongsTo('App\Categoria');
     }
-
 
     public function tipo_publicacion() //relacion con tipo de publicacion
     {
@@ -47,5 +46,18 @@ class Publicacion extends Model
     public static function tomar_dos_mas_me_gusta()
     {
       return Publicacion::orderBy('neto_megusta', 'desc')->take(2)->get();
+    }
+    public static function buscar_por_categoria($categoria,$palabra_clave)
+    {
+     if($categoria == 0)
+     {
+       return Publicacion::where('titulo','like',$palabra_clave.'%')->get();
+     }else
+     {
+       return Publicacion::where('categoria_id',$categoria)
+         ->where('titulo','like',$palabra_clave.'%')->get();
+     }
+
+
     }
 }

@@ -479,6 +479,7 @@ legend {
 	#inner .inn_p {
 		float:left;
 		margin:4px 0 0 0;
+		max-width: 780px;
 	}
 #innerFicha {
 	clear:both;

@@ -13,4 +13,17 @@ class Categoria extends Model
     {
         return $this->hasMany('App\Publicacion', 'categoria_id');
     }
+
+    public static function trae_id($n_url)
+    {
+    if ($n_url == 'todas')
+    {
+      return 'todas';
+    } else{
+      return Categoria::where('nombre_url',$n_url)->get();
+//select('id')->
+    }
+
+
+    }
 }

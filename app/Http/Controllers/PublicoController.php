@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Publicacion as Publicacion;
@@ -28,8 +26,10 @@ class PublicoController extends Controller
     public function show($id)
     {
       //Pasar esto al Modelo...
+      $categorias = Categoria::All();
+
       $publicacion = Publicacion::find($id);
-     return view('ficha.index', compact('publicacion'));
+     return view('ficha.index', compact('publicacion','categorias'));
      //  return $publicacion;
 
     }
@@ -39,5 +39,27 @@ class PublicoController extends Controller
       $categorias = Categoria::All();
       $usuarios_ranking = Cuenta_usuario::tomar_tres_ranking_participacion();
       return view('registro.index', compact('categorias','usuarios_ranking'));
+    }
+
+    public function busqueda($categoria,$palabra_clave)
+    {
+      $categorias = Categoria::All();
+      $cat_id = Categoria::trae_id($categoria);
+
+      if($cat_id == "todas"){
+            $id_cat = 0;
+            $publicaciones = Publicacion::buscar_por_categoria($id_cat,$palabra_clave);
+            $cat_id == "todas";
+          }
+      else
+          {
+            $cat_idx=$cat_id->first();
+            $id_cat = (int)$cat_idx->id;
+            $publicaciones = Publicacion::buscar_por_categoria($id_cat,$palabra_clave);
+            $bol_pub=$publicaciones->isEmpty();
+
+          }
+
+        return view('directorio.index', compact('publicaciones','categorias','cat_id'));
     }
 }

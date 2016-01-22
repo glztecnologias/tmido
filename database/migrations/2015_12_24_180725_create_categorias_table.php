@@ -16,6 +16,7 @@ class CreateCategoriasTable extends Migration
             $table->increments('id');
             $table->string('nombre', 60);
             $table->string('descripcion', 200);
+            $table->string('nombre_url', 60); //sin acentos ni ñ , Minuscula...
             $table->timestamps();
         });
     }

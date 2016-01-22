@@ -17,10 +17,9 @@ Route::get('/', function () {
   //return view('registro.index',);
 });
 Route::get('/registro','PublicoController@muestra_registro');
-
 Route::get('/publicaciones','PublicoController@index');
-
 Route::get('/publicaciones/{id}', ['middleware' => 'VisitaPublicacion', 'uses' => 'PublicoController@show']);
+Route::get('/publicaciones/{categoria}/{palabra_clave}', 'PublicoController@busqueda');
 
 Route::resource('/admin/publicaciones', 'PublicacionController');
 

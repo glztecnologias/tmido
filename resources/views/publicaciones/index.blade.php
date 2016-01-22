@@ -1,3 +1,4 @@
+<?php $seccion = 'inicio'; ?>
 @extends('layouts/master')
 @section('titulo','inicio')
 @section('contenido')

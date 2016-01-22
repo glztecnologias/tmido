@@ -18,6 +18,11 @@ $(document).ready(function() {
 		contentAsHTML: true
 	});
 });
+function buscar(){
+  var categoria = $('select[name=categoria]').val();
+  var palabra_clave =$('#search').val();
+  window.location.href = "/publicaciones/"+categoria+"/"+palabra_clave;
+}
 </script>
 <style>
 .fichaCategoria

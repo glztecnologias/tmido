@@ -14,9 +14,11 @@
     <div id="homeLeft">
     <h1><i class="fa fa-pencil-square-o"> </i>  Registro de Usuario</h1>
 
-    <form method="POST" action="/auth/register">
+    <form method="POST" action="/ingreso/register">
         {!! csrf_field() !!}
-        <div>Nombre<input type="text" name="name" value="{{ old('name') }}">
+        <div>Nombres<input type="text" name="name" value="{{ old('name') }}">
+        </div>
+        <div>Apellidos<input type="text" name="lname" value="{{ old('lname') }}">
         </div>
         <div>E-Mail<input type="email" name="email" value="{{ old('email') }}">
         </div>

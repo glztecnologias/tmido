@@ -47,17 +47,34 @@ class Publicacion extends Model
     {
       return Publicacion::orderBy('neto_megusta', 'desc')->take(2)->get();
     }
+
+
     public static function buscar_por_categoria($categoria,$palabra_clave)
     {
-     if($categoria == 0)
-     {
-       return Publicacion::where('titulo','like',$palabra_clave.'%')->get();
-     }else
-     {
-       return Publicacion::where('categoria_id',$categoria)
-         ->where('titulo','like',$palabra_clave.'%')->get();
-     }
+       if($categoria == 0)
+           {
+             if(isset($palabra_clave))
+             {
+               return Publicacion::where('titulo','like',$palabra_clave.'%')->get();
+             }
+             else
+             {
+               return Publicacion::All();
+             }
 
-
+           }
+       else
+           {
+             if(isset($palabra_clave))
+             {
+               return Publicacion::where('categoria_id',$categoria)
+                ->where('titulo','like',$palabra_clave.'%')->get();
+             }
+             else {
+               return Publicacion::where('categoria_id',$categoria)->get();
+             }
+           }
     }
+
+
 }

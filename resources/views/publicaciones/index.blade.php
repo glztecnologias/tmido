@@ -28,15 +28,14 @@
     <h1><i class="fa fa-thumbs-up tituloPulgar"></i>Opinión: Números y estadísticas</h1>
     <div id="homeRightGraph">
     <section>
-      <img src="http://www.teohilfe.cl/clientes/tmido/imag/grafico_anillo.png" width="150">
-      <h3>Votantes por edad</h3>
-      <a href="#">ver más...</a>
+
+      <div id="graf1" width="300">
+      </div>
+
+
       </section>
-      <section>
-      <img src="http://www.teohilfe.cl/clientes/tmido/imag/grafico_barra.png" width="150" >
-      <h3>Político más rechazado</h3>
-      <a href="#">ver más...</a>
-      </section></div>
+
+    </div>
 
 		<h1><i class="fa fa-thumbs-up tituloPulgar"></i>Más Valorados</h1>
 

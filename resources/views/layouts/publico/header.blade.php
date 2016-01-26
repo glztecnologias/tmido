@@ -2,7 +2,7 @@
   <a href="/">
     <img src="/imag/header_logo.png" width="359" height="55" alt="T-MIDO" class="head_logo"></a>
 @if(!isset($usuario))
-  <form method="post" enctype="multipart/form-data" action="/auth/login">
+  <form method="post" enctype="multipart/form-data" action="/ingreso/login">
     {!! csrf_field() !!}
     <label for="email">Email:</label>
     <input name="email" type="text" required id="email" value="{{ old('email') }}">

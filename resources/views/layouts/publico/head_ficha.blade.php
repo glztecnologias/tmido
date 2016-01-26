@@ -1,3 +1,4 @@
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <link href="/css/tmido.css" rel="stylesheet" type="text/css">
 <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="/css/Selectyze.jquery.css" rel="stylesheet" type="text/css">
@@ -80,6 +81,6 @@ $(document).ready(function() {
 function buscar(){
   var categoria = $('select[name=categoria]').val();
   var palabra_clave =$('#search').val();
-  window.location.href = "/publicaciones/"+categoria+"/"+palabra_clave;
+  window.location.href = "/publicaciones/busqueda/"+categoria+"/"+palabra_clave;
 }
 </script>

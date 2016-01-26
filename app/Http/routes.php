@@ -18,18 +18,26 @@ Route::get('/', function () {
 });
 Route::get('/registro','PublicoController@muestra_registro');
 Route::get('/publicaciones','PublicoController@index');
-Route::get('/publicaciones/{id}', ['middleware' => 'VisitaPublicacion', 'uses' => 'PublicoController@show']);
-Route::get('/publicaciones/{categoria}/{palabra_clave}', 'PublicoController@busqueda');
+
+
+Route::get('/publicaciones/busqueda/{categoria}/{palabra_clave?}', 'PublicoController@busqueda');
+//Route::get('/publicaciones/busqueda/{categoria}', 'PublicoController@busqueda');
 
 Route::resource('/admin/publicaciones', 'PublicacionController');
-
 Route::resource('/admin', 'AdminController');
 
+Route::get('/t-mido','PublicoController@muestra_proyecto');
+Route::get('/noticias','PublicoController@muestra_noticias');
+Route::get('/contacto','PublicoController@muestra_contacto');
+Route::get('/ranking','PublicoController@muestra_ranking');
+Route::get('/politicas','PublicoController@muestra_politicas');
 // Authentication routes...
 
-Route::post('ingreso/login', 'IngresoController@postLogin');
-Route::get('ingreso/logout', 'IngresoController@getLogout');
+Route::post('/ingreso/login', 'IngresoController@postLogin');
+Route::get('/ingreso/logout', 'IngresoController@getLogout');
 
 // Registration routes...
-Route::get('ingreso/register', 'IngresoController@getRegister');
-Route::post('ingreso/register', 'IngresoController@postRegister');
+Route::get('/ingreso/register', 'IngresoController@getRegister');
+Route::post('/ingreso/register', 'IngresoController@postRegister');
+
+Route::get('/publicaciones/{id}', ['middleware' => 'VisitaPublicacion', 'uses' => 'PublicoController@show']);

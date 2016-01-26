@@ -10,7 +10,9 @@
          @forelse( $cat_id as $cat )
          <h1><i class="fa fa-star tituloStar"></i>{{ $cat->nombre }}</h1>
          @empty
-           <h1>No existen publicaciones con la informacion solicitada...</h1>
+         <br>
+          <hr>
+           <h3 style="float:left;margin-left: 40px;margin-top: 30px;">No existen publicaciones con la informacion solicitada...</h3>
          @endforelse
      @endif
 
@@ -33,14 +35,19 @@
       <a href="/publicaciones/{{ $publicacion->id }}" class="fichaOpina" title="¡Opina tú también!">¡Opina tú también!</a>
 </div>
 @empty
-  <h1>Sin publicaciones</h1>
+<br>
+<hr>
+  <h3 style="float:left;margin-left: 40px;margin-top: 10px;">No existen publicaciones con la informacion solicitada...</h3>
 @endforelse
 
 @else
-<h1>No existen publicaciones con la informacion solicitada...</h1>
+<br>
+<hr>
+<h3 style="float:left;margin-left: 40px;margin-top: 10px;">No existen publicaciones con la informacion solicitada...</h3>
 @endif
 
-      <a href="http://www.emol.com" target="_blank"><img src="/imag/banner_horizontal.jpg" width="511" height="65" alt="Banner" class="bannerInterior"></a> </div>
+      <!--<a href="http://www.emol.com" target="_blank"><img src="/imag/banner_horizontal.jpg" width="511" height="65" alt="Banner" class="bannerInterior"></a> </div>
+-->
     </div>
 </div>
 @endsection

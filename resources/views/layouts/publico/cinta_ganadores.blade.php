@@ -7,6 +7,6 @@
 		@empty
 		  <p>Proximamente!</p>
 		@endforelse
-		<a href="javascript:void(0);">ver ranking del mes y premios</a>
+		<a href="/ranking">ver ranking del mes y premios</a>
     </div>
 </div>

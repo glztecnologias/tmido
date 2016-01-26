@@ -1,11 +1,11 @@
 <div id="menuTop">
 	<div id="menu">
 		<section>
-			<a href="index.php">Inicio</a>
-			<a href="javascript:void(0);">T-Mido</a>
-			<a href="javascript:void(0);">Directorio de Mediciones</a>
-			<a href="javascript:void(0);">Noticias</a>
-			<a href="javascript:void(0);">Contacto</a>
+			<a href="/">Inicio</a>
+			<a href="/t-mido">T-Mido</a>
+			<a href="/publicaciones/busqueda/todas/">Directorio de Mediciones</a>
+			<a href="/noticias">Noticias</a>
+			<a href="/contacto">Contacto</a>
     </section>
     </div>
 </div>

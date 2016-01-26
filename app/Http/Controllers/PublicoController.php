@@ -41,10 +41,45 @@ class PublicoController extends Controller
       return view('registro.index', compact('categorias','usuarios_ranking'));
     }
 
-    public function busqueda($categoria,$palabra_clave)
+
+    public function muestra_proyecto()
+    {
+      $categorias = Categoria::All();
+      $usuarios_ranking = Cuenta_usuario::tomar_tres_ranking_participacion();
+      return view('t-mido.index', compact('categorias','usuarios_ranking'));
+      //return view('t-mido.index');
+    }
+
+    public function muestra_noticias()
+    {
+      $categorias = Categoria::All();
+      $usuarios_ranking = Cuenta_usuario::tomar_tres_ranking_participacion();
+      return view('noticias.index', compact('categorias','usuarios_ranking'));
+    }
+
+    public function muestra_contacto()
+    {
+      $categorias = Categoria::All();
+      $usuarios_ranking = Cuenta_usuario::tomar_tres_ranking_participacion();
+      return view('contacto.index', compact('categorias','usuarios_ranking'));
+    }
+    public function muestra_ranking()
+    {
+      $categorias = Categoria::All();
+      $usuarios_ranking = Cuenta_usuario::tomar_tres_ranking_participacion();
+      return view('ranking.index', compact('categorias','usuarios_ranking'));
+    }
+    public function muestra_politicas()
+    {
+      $categorias = Categoria::All();
+      $usuarios_ranking = Cuenta_usuario::tomar_tres_ranking_participacion();
+      return view('politicas.index', compact('categorias','usuarios_ranking'));
+    }
+    public function busqueda($categoria, $palabra_clave = null)
     {
       $categorias = Categoria::All();
       $cat_id = Categoria::trae_id($categoria);
+
 
       if($cat_id == "todas"){
             $id_cat = 0;
@@ -62,4 +97,28 @@ class PublicoController extends Controller
 
         return view('directorio.index', compact('publicaciones','categorias','cat_id'));
     }
+
+    // public function busqueda_todas($categoria)
+    // {
+    //   $categorias = Categoria::All();
+    //   $cat_id = Categoria::trae_id($categoria);
+    //
+    //
+    //   if($cat_id == "todas"){
+    //         $id_cat = 0;
+    //         $publicaciones = Publicacion::buscar_por_categoria($id_cat,$palabra_clave);
+    //         $cat_id == "todas";
+    //       }
+    //   else
+    //       {
+    //         $cat_idx=$cat_id->first();
+    //         $id_cat = (int)$cat_idx->id;
+    //         $publicaciones = Publicacion::buscar_por_categoria($id_cat,$palabra_clave);
+    //         $bol_pub=$publicaciones->isEmpty();
+    //
+    //       }
+    //
+    //     return view('directorio.index', compact('publicaciones','categorias','cat_id'));
+    // }
+
 }

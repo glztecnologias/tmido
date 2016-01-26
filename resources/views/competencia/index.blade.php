@@ -1,4 +1,4 @@
-<?php $seccion = 'ficha'; ?>
+<?php $seccion = 'competencia'; ?>
 @extends('layouts/master')
 @section('titulo',$publicacion->titulo)
 @section('contenido')
@@ -6,11 +6,6 @@
 <div id="contenedor">
   <hr noshade class="hr_home">
   <div id="contenido"  class="clearfix fondoFicha">
-
-@if($publicacion->competencia_id == null)
-
-@else
-
 <!--COMPETENCIA-->
 
 <div id="fichaMultiple">
@@ -20,28 +15,28 @@
     <div style="visibility: visible; overflow: hidden; position: relative; z-index: 2; left: 0px; width: 944px;" id="carrusel">
     <ul style="margin: 0px; padding: 0px; position: relative; list-style: outside none none; z-index: 1; width: 3068px; left: -944px;"><li style="overflow: hidden; float: left; width: 81px; height: 90px;">
     <a href="ficha.php" class="tooltip tooltipstered"><span>¡Evalua!</span></a>
-    <img src="/imag/foto_bachelet.jpg">
+    <img src="imag/foto_bachelet.jpg">
 </li><li style="overflow: hidden; float: left; width: 81px; height: 90px;">
     <a href="ficha.php" class="tooltip tooltipstered"><span>¡Evalua!</span></a>
-     <img src="/imag/foto_meo.jpg">
+     <img src="imag/foto_meo.jpg">
 </li><li style="overflow: hidden; float: left; width: 81px; height: 90px;">
     <a href="ficha.php" class="tooltip tooltipstered"><span>¡Evalua!</span></a>
-     <img src="/imag/foto_allende.jpg">
+     <img src="imag/foto_allende.jpg">
 </li><li style="overflow: hidden; float: left; width: 81px; height: 90px;">
     <a href="ficha.php" class="tooltip tooltipstered"><span>¡Evalua!</span></a>
-     <img src="/imag/foto_von_baer.jpg">
+     <img src="imag/foto_von_baer.jpg">
 </li><li style="overflow: hidden; float: left; width: 81px; height: 90px;">
     <a href="ficha.php" class="tooltip tooltipstered"><span>¡Evalua!</span></a>
-     <img src="/imag/foto_davalos.jpg">
+     <img src="imag/foto_davalos.jpg">
 </li><li style="overflow: hidden; float: left; width: 81px; height: 90px;">
     <a href="ficha.php" class="tooltip tooltipstered"><span>¡Evalua!</span></a>
-     <img src="/imag/foto_parisi.jpg">
+     <img src="imag/foto_parisi.jpg">
 </li><li style="overflow: hidden; float: left; width: 81px; height: 90px;">
     <a href="ficha.php" class="tooltip tooltipstered"><span>¡Evalua!</span></a>
-     <img src="/imag/foto_burgos.jpg">
+     <img src="imag/foto_burgos.jpg">
 </li><li style="overflow: hidden; float: left; width: 81px; height: 90px;">
     <a href="ficha.php" class="tooltip tooltipstered"><span>¡Evalua!</span></a>
-     <img src="/imag/foto_navarro.jpg">
+     <img src="imag/foto_navarro.jpg">
 </li>
     <li style="overflow: hidden; float: left; width: 81px; height: 90px;">
     <a href="ficha.php" class="tooltip tooltipstered"><span>¡Evalua!</span></a>
@@ -127,23 +122,9 @@
 
 <!--##############-->
 
-@endif
-
-
-
     <div id="fichaLeft" class="clearfix">
       <h2><i class="fa fa-star tituloStar"></i>Publicaciones / {{ $publicacion->categoria->nombre }}</h2>
-@if($publicacion->competencia_id == null)
-<h1>{{ $publicacion->titulo }}</h1>
-@else
-<h1>
-  Sufijo de Titulo (competencia):
-<span class="rojo">{{ $publicacion->titulo }}</span>
-</h1>
-@endif
-
-
-
+      <h1>{{ $publicacion->titulo }}</h1>
       <div id="fichaVideo" class="clearfix">
         <div id="mediaContenedor">
           <div id="video-container">

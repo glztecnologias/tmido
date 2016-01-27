@@ -9,17 +9,19 @@
     <div id="homeLeft">
     <h1><i class="fa fa-star tituloStar"></i>Destacados</h1>
 @forelse($publicaciones as $publicacion)
-    <div class="ficha">
-         <img src="{{ $publicacion->url_foto }}" alt="" style="height:141px">
-         <section  style="background: {{ $publicacion->categoria->descripcion }} none repeat scroll 0% 0%;">
-         <p class="fichaNombre">{{ $publicacion->titulo }}</p>
-         <p class="fichaPregunta">{{ $publicacion->descripcion_corta }}</p>
-      </section>
-         <p class="fichaVisitas">{{ $publicacion->contador }} Visitas
-				<span class="fichaCategoria">{{ $publicacion->categoria->nombre }}</span>
-				 </p>
-         <a href="/publicaciones/{{ $publicacion->id }}" class="fichaOpina tooltip" title="¡Opina tú también!">¡Opina tú también!</a>
-   </div>
+    @if ($publicacion->estado->nombre == "activo")
+        <div class="ficha">
+             <img src="{{ $publicacion->url_foto }}" alt="" style="height:141px">
+             <section  style="background: {{ $publicacion->categoria->descripcion }} none repeat scroll 0% 0%;">
+             <p class="fichaNombre">{{ $publicacion->titulo }}</p>
+             <p class="fichaPregunta">{{ $publicacion->descripcion_corta }}</p>
+          </section>
+             <p class="fichaVisitas">{{ $publicacion->contador }} Visitas
+    				<span class="fichaCategoria">{{ $publicacion->categoria->nombre }}</span>
+    				 </p>
+             <a href="/publicaciones/{{ $publicacion->id }}" class="fichaOpina tooltip" title="¡Opina tú también!">¡Opina tú también!</a>
+       </div>
+    @endif
 @empty
   <h1>Sin publicaciones</h1>
 @endforelse

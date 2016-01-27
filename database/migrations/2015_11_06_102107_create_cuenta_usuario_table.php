@@ -29,6 +29,7 @@ class CreateCuentaUsuarioTable extends Migration
             $table->string('facebook', 45)->nullable();
             $table->string('google', 45)->nullable();
             $table->integer('tipo_usuario_id')->unsigned()->nullable();
+            $table->integer('estado_id')->unsigned()->nullable();
             $table->integer('cont_megusta')->unsigned()->nullable();
             $table->integer('cont_nomegusta')->unsigned()->nullable();
             $table->integer('cont_comenta')->unsigned()->nullable();

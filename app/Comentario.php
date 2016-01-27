@@ -26,5 +26,9 @@ class Comentario extends Model
     {
       return $this->hasOne('App\Recurso', 'comentarios_id');
     }
+    public function estado() //relacion con estado de comentario
+    {
+        return $this->belongsTo('App\Estado');
+    }
 
 }

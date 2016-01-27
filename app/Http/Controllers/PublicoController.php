@@ -27,10 +27,25 @@ class PublicoController extends Controller
     {
       //Pasar esto al Modelo...
       $categorias = Categoria::All();
-
       $publicacion = Publicacion::find($id);
-     return view('ficha.index', compact('publicacion','categorias'));
-     //  return $publicacion;
+      $otras_pub_categoria = Publicacion::tomar_misma_categoria($publicacion->categoria_id,$id);
+    if( $publicacion->competencia_id == null)
+    {
+      $competidores = null;
+    }
+    else
+    {
+      $competidores = Publicacion::tomar_misma_competencia($publicacion->competencia_id);
+    }
+
+    if($publicacion->estado->nombre=="activo")
+    {
+       return view('ficha.index', compact('publicacion','categorias','competidores','otras_pub_categoria'));
+    }
+    else
+    {
+       return redirect('/');
+    }
 
     }
 

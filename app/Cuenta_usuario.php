@@ -24,6 +24,12 @@ class Cuenta_usuario extends Model implements AuthenticatableContract,
         return $this->belongsTo('App\Tipo_usuario');
     }
 
+    public function estado() //relacion con estado de cuenta de usuario
+    {
+        return $this->belongsTo('App\Estado');
+    }
+
+
     //consultas...
 
     public static function tomar_tres_ranking_participacion()

@@ -23,6 +23,7 @@
 
 
 @forelse($publicaciones as $publicacion)
+@if ($publicacion->estado->nombre == "activo")
   <div class="ficha">
       <img src="{{ $publicacion->url_foto }}" alt="" style="height:141px">
        <section  style="background: {{ $publicacion->categoria->descripcion }} none repeat scroll 0% 0%;">
@@ -34,6 +35,7 @@
    </p>
       <a href="/publicaciones/{{ $publicacion->id }}" class="fichaOpina" title="¡Opina tú también!">¡Opina tú también!</a>
 </div>
+@endif
 @empty
 <br>
 <hr>

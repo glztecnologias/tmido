@@ -623,6 +623,7 @@ legend {
 	min-height: 293px;
 	margin:0px;
 	float:left;
+
 }
 
 #video-container, #audio-container {
@@ -631,6 +632,8 @@ legend {
 	position:relative;
 	z-index:5;
 }
+#foto-container{text-align: center;}
+#foto-container img {height:300px; max-height:300px:}
 
 #audio-container {
 	background: #000 url(../imag/audio_fondo.png) no-repeat center center;

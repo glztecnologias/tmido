@@ -20,10 +20,12 @@ class IngresoController extends Controller
       {
         Auth::login($usuario);
         $user = Auth::user();
-        return $user->nombres;
+      //  return $user->nombres;
+    return redirect('/')->with('user',$user);
+    //  return view('publicaciones.index', compact('user'));
       }
 
-      return redirect('/');
+      //return redirect('/');
 
  }
 

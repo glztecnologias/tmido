@@ -31,6 +31,7 @@ Route::get('/noticias','PublicoController@muestra_noticias');
 Route::get('/contacto','PublicoController@muestra_contacto');
 Route::get('/ranking','PublicoController@muestra_ranking');
 Route::get('/politicas','PublicoController@muestra_politicas');
+Route::get('/cuenta','PublicoController@muestra_cuenta');
 // Authentication routes...
 
 Route::post('/ingreso/login', 'IngresoController@postLogin');

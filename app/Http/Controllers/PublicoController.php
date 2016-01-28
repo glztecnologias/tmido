@@ -90,6 +90,15 @@ class PublicoController extends Controller
       $usuarios_ranking = Cuenta_usuario::tomar_tres_ranking_participacion();
       return view('politicas.index', compact('categorias','usuarios_ranking'));
     }
+
+    public function muestra_cuenta()
+    {
+      $categorias = Categoria::All();
+      $usuarios_ranking = Cuenta_usuario::tomar_tres_ranking_participacion();
+      return view('cuenta.index', compact('categorias','usuarios_ranking'));
+    }
+
+
     public function busqueda($categoria, $palabra_clave = null)
     {
       $categorias = Categoria::All();

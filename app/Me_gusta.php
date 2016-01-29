@@ -21,12 +21,11 @@ class Me_gusta extends Model
     }
 
     //consultas
-    public static function comprobar_votacion_si($id_publicacion, $id_usuario)
+    public static function comprobar_votacion($id_publicacion, $id_usuario)
     {
       return Me_gusta::where('publicaciones_id',$id_publicacion)
-      ->where('cuenta_usuario_id',$id_usuario)
-      ->where('si',1)->first();
-    //  return "si";
+      ->where('cuenta_usuario_id',$id_usuario)->first();
+    //  return "si";->where('si',1)
     }
 
 
@@ -38,7 +37,6 @@ class Me_gusta extends Model
        $megusta->si = 1;
        $megusta->no = 0;
        $megusta->save();
-
        $publicacion = Publicacion::find($id_publicacion);
        $publicacion->megusta = $publicacion->megusta + 1;
        $publicacion->save();
@@ -48,6 +46,15 @@ class Me_gusta extends Model
 
     public static function inserta_nomegusta($id_publicacion,$id_usuario)
     {
+      $megusta = new Me_gusta;
+      $megusta->cuenta_usuario_id = $id_usuario;
+      $megusta->publicaciones_id  = $id_publicacion;
+      $megusta->si = 0;
+      $megusta->no = 1;
+      $megusta->save();
+      $publicacion = Publicacion::find($id_publicacion);
+      $publicacion->nomegusta = $publicacion->nomegusta + 1;
+      $publicacion->save();
 
     }
 

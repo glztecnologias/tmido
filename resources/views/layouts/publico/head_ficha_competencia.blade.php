@@ -1,6 +1,4 @@
 
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
 <link href="/css/tmido.css" rel="stylesheet" type="text/css">
 <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="/css/Selectyze.jquery.css" rel="stylesheet" type="text/css">
@@ -17,6 +15,8 @@
 <script src="/js/jquery.slimscroll.min.js"></script>
 <script src="/js/jcarousellite_1.0.1.min.js"></script>
 <script src="/js/jquery.tooltipster.min.js"></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	$('.selectyze').Selectyze({
@@ -90,5 +90,71 @@ $(document).ready(function() {
 			}
 	});
 
+	/**GRAFICO DONUT***/
+	$('#graf1_ficha').highcharts({
+		exporting: { enabled: false },
+	            chart: {
+									backgroundColor: "#F0F0F0",
+	                plotBackgroundColor: null,
+	                plotBorderWidth: null,
+	                plotShadow: false,
+	                type: 'pie'
+
+	            },
+	            title: {
+	                text: 'me gusta / no me gusta',
+									style:{'font-size':'15px','font-weight':'bold','color':'#D42D2C'},
+
+	            },
+	            tooltip: {
+	                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+	            },
+	            plotOptions: {
+	                pie: {
+	                    allowPointSelect: true,
+	                    cursor: 'pointer',
+											marginTop: -50,
+	                    dataLabels: {
+	                        enabled: false
+	                    },
+	                    showInLegend: true
+	                }
+	            },
+	            series: [{
+	                name: 'Votacion',
+	                colorByPoint: true,
+	                data: [
+									{
+	                    name: 'Me Gusta',
+											color:'#099',
+	                    y: {{ $publicacion->megusta }}
+	                },
+									{
+	                    name: 'No Me Gusta',
+											color:'#D42D2C',
+	                    y: {{ $publicacion->nomegusta }},
+	                    sliced: true,
+	                    selected: true
+	                }]
+	            }]
+	        });
+	/*****************/
+
+
 });
+
+function voto_gusto(id,opcion)
+{
+	$.post( "/megusta", {idp:id,op:opcion}, function( data ) {
+	 	alert(data);
+	 	location.reload();
+	});
+}
+
+function buscar()
+{
+  var categoria = $('select[name=categoria]').val();
+  var palabra_clave =$('#search').val();
+  window.location.href = "/publicaciones/busqueda/"+categoria+"/"+palabra_clave;
+}
 </script>

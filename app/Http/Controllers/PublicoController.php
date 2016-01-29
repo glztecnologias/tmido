@@ -110,23 +110,43 @@ class PublicoController extends Controller
 
     if($usuario)
     {
-        $comprobar_si = Me_gusta::comprobar_votacion_si($request->idp,$usuario->id);
+        $check_votacion = Me_gusta::comprobar_votacion($request->idp,$usuario->id);
 
-        if($comprobar_si)
+        if($check_votacion)
         {
-        return "Ya haz votado anteriormente!...";
+            if( $check_votacion->si == 1 AND $request->op == 'si')
+              {
+                return "Lo sentimos, ya haz votado anteriormente!...";
+              }
+            elseif($check_votacion->no == 1 && $request->op == 'no')
+            {
+              return "Lo sentimos, ya haz votado anteriormente!...";
+            }
+            elseif($check_votacion->si == 1 AND $request->op == 'no')
+            {
+              return " cambiar a no me gusta";
+            }
+            elseif($check_votacion->no == 1 AND $request->op == 'si')
+            {
+                return " cambiar a si me gusta";
+            }
         }
         else
         {
-
-          Me_gusta::inserta_megusta($request->idp,$usuario->id);
-
+         if($request->op=='si')
+           {
+             Me_gusta::inserta_megusta($request->idp,$usuario->id);
+           }
+        else
+          {
+            Me_gusta::inserta_nomegusta($request->idp,$usuario->id);
+          }
           return "Gracias por tu voto!";
         }
       }
     else
     {
-      return "debes logearte para votar";
+      return "Debes acceder como usuario para votar!...";
     }
 
 
@@ -165,27 +185,5 @@ class PublicoController extends Controller
         return view('directorio.index', compact('publicaciones','categorias','cat_id'));
     }
 
-    // public function busqueda_todas($categoria)
-    // {
-    //   $categorias = Categoria::All();
-    //   $cat_id = Categoria::trae_id($categoria);
-    //
-    //
-    //   if($cat_id == "todas"){
-    //         $id_cat = 0;
-    //         $publicaciones = Publicacion::buscar_por_categoria($id_cat,$palabra_clave);
-    //         $cat_id == "todas";
-    //       }
-    //   else
-    //       {
-    //         $cat_idx=$cat_id->first();
-    //         $id_cat = (int)$cat_idx->id;
-    //         $publicaciones = Publicacion::buscar_por_categoria($id_cat,$palabra_clave);
-    //         $bol_pub=$publicaciones->isEmpty();
-    //
-    //       }
-    //
-    //     return view('directorio.index', compact('publicaciones','categorias','cat_id'));
-    // }
 
 }

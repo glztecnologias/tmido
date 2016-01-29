@@ -142,21 +142,20 @@ function buscar()
   window.location.href = "/publicaciones/busqueda/"+categoria+"/"+palabra_clave;
 }
 
-function megusta(id)
+function voto_gusto(id,opcion)
 {
-	$.post( "/megusta", {idp:id}, function( data ) {
-   location.reload();
+	$.post( "/megusta", {idp:id,op:opcion}, function( data ) {
 		alert(data);
+	 	location.reload();
 	});
-
 }
 
-function nomegusta(id)
+/**function nomegusta(id)
 {
 	$.post( "/nomegusta", {idp:id}, function( data ) {
     location.reload();
 		alert(data);
 	});
-}
+}**/
 
 </script>

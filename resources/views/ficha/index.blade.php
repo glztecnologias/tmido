@@ -93,8 +93,8 @@
         </section>
 
         <section class="clearfix">
-          <a href="javascript:megusta({{ $publicacion->id }});"><p class="comentarioPublico"><i class="fa fa-thumbs-up pulgarUp"></i> {{ $publicacion->megusta }}</p></a>
-          <a href="javascript:nomegusta({{ $publicacion->id }});"><p class="comentarioPublico"><i class="fa fa-thumbs-down pulgarDown"></i> {{ $publicacion->nomegusta }}</p></a>
+          <a href="javascript:voto_gusto({{ $publicacion->id }},'si');"><p class="comentarioPublico"><i class="fa fa-thumbs-up pulgarUp"></i> {{ $publicacion->megusta }}</p></a>
+          <a href="javascript:voto_gusto({{ $publicacion->id }},'no');"><p class="comentarioPublico"><i class="fa fa-thumbs-down pulgarDown"></i> {{ $publicacion->nomegusta }}</p></a>
           <p class="comentarioFecha">Publicado el {{ $publicacion->f_inicio }}</p>
         </section>
 

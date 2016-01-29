@@ -5,14 +5,16 @@
 
 @if($datos_user = session('usuario'))
 
-<strong>{{ $datos_user->nombres }}</strong>
-<a href="/ingreso/logout"> Salir</a>
-
+<div id="txt_bienvenida">Bienvenido {{ $datos_user->nombres}} {{ $datos_user->apellidos}}
+  <br>
+  <a href="/cuenta" id="txt_cuenta" title="Ir a cuenta">Mi Cuenta <i class="fa fa-user"></i></a>
+| <a href="/ingreso/logout" id="txt_logout" title="Cerrar Sesion">  Salir <i class="fa fa-sign-out"></i></a>
+</div>
 @else
 
 <form method="post" enctype="multipart/form-data" action="/ingreso/login">
   {!! csrf_field() !!}
-  <label for="email">Email:</label> asdasdasdas asdjasd
+  <label for="email">Email:</label>
   <input name="email" type="text" required id="email" value="{{ old('email') }}">
   <label for="clave">Contraseña:</label>
   <input id="clave" type="password" name="password" required>

@@ -1246,3 +1246,18 @@ a.tooltipNO[title] {
 .clearfix:after { visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
 * html .clearfix { zoom: 1; }
 *:first-child+html .clearfix { zoom: 1; }
+
+#txt_bienvenida{
+	float: right;
+margin-top:20px;
+
+font-size: 12px;
+margin-right: 30px;
+text-shadow: 0px 0.2px 0.1px gray;
+}
+#txt_logout{
+	color:red;
+}
+#txt_cuenta{
+	color:#304774;
+}

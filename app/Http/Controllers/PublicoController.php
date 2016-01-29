@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Publicacion as Publicacion;
 use App\Categoria as Categoria;
 use App\Cuenta_usuario as Cuenta_usuario;
-
+use App\Me_gusta as Me_gusta;
 class PublicoController extends Controller
 {
 
@@ -91,11 +91,54 @@ class PublicoController extends Controller
       return view('politicas.index', compact('categorias','usuarios_ranking'));
     }
 
-    public function muestra_cuenta()
+    public function muestra_cuenta(Request $request) //Validar USUARIO ****
     {
       $categorias = Categoria::All();
       $usuarios_ranking = Cuenta_usuario::tomar_tres_ranking_participacion();
+
+      $usuario = session('usuario');  //Validar USUARIO ****
+      $request->session()->put('usuario', $usuario); //Validar USUARIO ****
+
       return view('cuenta.index', compact('categorias','usuarios_ranking'));
+
+    }
+
+    public function votar_megusta(Request $request)
+    {
+    $usuario = session('usuario');
+    $request->session()->put('usuario', $usuario);
+
+    if($usuario)
+    {
+        $comprobar_si = Me_gusta::comprobar_votacion_si($request->idp,$usuario->id);
+
+        if($comprobar_si)
+        {
+        return "Ya haz votado anteriormente!...";
+        }
+        else
+        {
+
+          Me_gusta::inserta_megusta($request->idp,$usuario->id);
+
+          return "Gracias por tu voto!";
+        }
+      }
+    else
+    {
+      return "debes logearte para votar";
+    }
+
+
+
+
+
+    }
+
+    public function votar_nomegusta(Request $request)
+    {
+
+
     }
 
 

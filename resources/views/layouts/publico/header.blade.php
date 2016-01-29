@@ -2,13 +2,17 @@
   <a href="/">
     <img src="/imag/header_logo.png" width="359" height="55" alt="T-MIDO" class="head_logo"></a>
 
-@if(Auth::check())
-<strong>Tengo que inventar algo</strong>
+
+@if($datos_user = session('usuario'))
+
+<strong>{{ $datos_user->nombres }}</strong>
+<a href="/ingreso/logout"> Salir</a>
+
 @else
 
 <form method="post" enctype="multipart/form-data" action="/ingreso/login">
   {!! csrf_field() !!}
-  <label for="email">Email:</label>
+  <label for="email">Email:</label> asdasdasdas asdjasd
   <input name="email" type="text" required id="email" value="{{ old('email') }}">
   <label for="clave">Contraseña:</label>
   <input id="clave" type="password" name="password" required>

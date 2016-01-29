@@ -42,3 +42,9 @@ Route::get('/ingreso/register', 'IngresoController@getRegister');
 Route::post('/ingreso/register', 'IngresoController@postRegister');
 
 Route::get('/publicaciones/{id}', ['middleware' => 'VisitaPublicacion', 'uses' => 'PublicoController@show']);
+
+
+//rutas me gusta
+
+Route::post('/megusta','PublicoController@votar_megusta');
+Route::post('/nomegusta','PublicoController@votar_nomegusta');

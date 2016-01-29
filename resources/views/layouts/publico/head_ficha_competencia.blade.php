@@ -1,4 +1,6 @@
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 <link href="/css/tmido.css" rel="stylesheet" type="text/css">
 <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="/css/Selectyze.jquery.css" rel="stylesheet" type="text/css">
@@ -6,6 +8,7 @@
 <link href="/css/colorbox.css" rel="stylesheet" type="text/css">
 <link href="/css/ranking.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="/css/tooltipster.css" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 <script src="/js/jquery-1.11.3.min.js"></script>
 <script src="/js/jquery.easing.min.js"></script>
 <script src="/js/Selectyze.jquery.min.js"></script>

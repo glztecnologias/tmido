@@ -1,4 +1,4 @@
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
 
 <link href="/css/tmido.css" rel="stylesheet" type="text/css">
 <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -8,6 +8,10 @@
 <script src="/js/jquery-1.11.3.min.js"></script>
 <script src="/js/Selectyze.jquery.min.js"></script>
 <script src="/js/jquery.tooltipster.min.js"></script>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function() {
 	$('.selectyze').Selectyze({
@@ -19,6 +23,49 @@ $(document).ready(function() {
 		position: 'right',
 		contentAsHTML: true
 	});
+
+
+	// Build the chart
+	$('#graf1').highcharts({
+			chart: {
+					plotBackgroundColor: null,
+					plotBorderWidth: null,
+					plotShadow: false,
+					type: 'pie'
+			},
+			title: {
+					text: 'Browser market shares January, 2015 to May, 2015'
+			},
+			tooltip: {
+					pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+			},
+			plotOptions: {
+					pie: {
+							allowPointSelect: true,
+							cursor: 'pointer',
+							dataLabels: {
+									enabled: false
+							},
+							showInLegend: true
+					}
+			},
+			series: [{
+					name: 'Brands',
+					colorByPoint: true,
+					data: [ {
+							name: 'Chrome',
+							y: 24.03,
+							sliced: true,
+							selected: true
+					}, {
+							name: 'Firefox',
+							y: 10.38
+					}]
+			}]
+	});
+
+
+
 });
 function buscar(){
   var categoria = $('select[name=categoria]').val();
@@ -26,29 +73,7 @@ function buscar(){
   window.location.href = "/publicaciones/busqueda/"+categoria+"/"+palabra_clave;
 }
 
-google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
 
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
-        ]);
-
-        var options = {
-          title: 'My Daily Activities',
-					width:350,
-					height:300
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('graf1'));
-
-        chart.draw(data, options);
-      }
 
 
 
@@ -58,7 +83,5 @@ google.charts.load('current', {'packages':['corechart']});
 {
 	float:right;
 	color:black;
-	font-size:11px;
-}
-
+	font-size:11px;}
 </style>

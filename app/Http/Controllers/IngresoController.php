@@ -19,9 +19,13 @@ class IngresoController extends Controller
        if($usuario)
       {
         Auth::login($usuario);
-        $user = Auth::user();
-      //  return $user->nombres;
-    return redirect('/')->with('user',$user);
+        // session(['nombre' => $usuario->nombres,'id'=> $usuario->id]);
+      session(['usuario' => $usuario]);
+      $request->session()->put('usuario', $usuario);
+
+    //  return $usuario;
+    return redirect('/');
+
     //  return view('publicaciones.index', compact('user'));
       }
 
@@ -29,12 +33,12 @@ class IngresoController extends Controller
 
  }
 
- public function getLogout()
+ public function getLogout(Request $request)
  {
-       if (Auth::check())
-       {
-        Auth::logout();
-       }
+
+   $request->session()->flush();
+        //Auth::logout();
+
        return redirect('/');
  }
 

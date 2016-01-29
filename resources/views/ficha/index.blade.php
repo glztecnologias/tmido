@@ -85,31 +85,34 @@
           <p class="comentariosRanking"><i class="fa fa-star estrellita"></i><i class="fa fa-star estrellita"></i><i class="fa fa-star estrellita"></i><i class="fa fa-star estrellita"></i><i class="fa fa-star estrellita"></i><i class="fa fa-star estrellita"></i><i class="fa fa-star-half-o estrellita"></i></p>
           <p class="comentariosVisitas">{{ $publicacion->contador }} Visitas</p>
           <p class="comentariosUser">Usuario: <span>Juan sin Tierra</span></p>
+          <br>
           <p class="">
             {{ $publicacion->descripcion_corta }}<br>
             {{ $publicacion->descripcion_larga }}
           </p>
         </section>
+
         <section class="clearfix">
-          <p class="comentarioPublico"><i class="fa fa-thumbs-up pulgarUp"></i> 100</p>
-          <p class="comentarioPublico"><i class="fa fa-thumbs-down pulgarDown"></i> 100</p>
-          <p class="comentarioFecha">Publicado el 10 de julio de 2015</p>
+          <a href="javascript:megusta({{ $publicacion->id }});"><p class="comentarioPublico"><i class="fa fa-thumbs-up pulgarUp"></i> {{ $publicacion->megusta }}</p></a>
+          <a href="javascript:nomegusta({{ $publicacion->id }});"><p class="comentarioPublico"><i class="fa fa-thumbs-down pulgarDown"></i> {{ $publicacion->nomegusta }}</p></a>
+          <p class="comentarioFecha">Publicado el {{ $publicacion->f_inicio }}</p>
         </section>
-        <section class="clearfix"> <img src="http://www.teohilfe.cl/clientes/tmido/imag/dummie_socialmedia.png" width="250" height="24" alt="dummie socialmedia" style="margin-left:3px;"> </section>
+
+        <section class="clearfix"> <img src="/imag/dummie_socialmedia.png" width="250" height="24" alt="dummie socialmedia" style="margin-left:3px;"> </section>
 
         <!--COMENTARIOS-->
         <div id="comentarios">
-          <section class="comentarioPrincipal"> <img src="http://www.teohilfe.cl/clientes/tmido/imag/user1.jpg" width="40" height="40" alt="NOMBRE_USUARIO_DINAMICO" class="comentarioUsuario">
+          <section class="comentarioPrincipal"> <img src="/tmido/imag/user1.jpg" width="40" height="40" alt="NOMBRE_USUARIO_DINAMICO" class="comentarioUsuario">
             <p class="comentarioOpinion">¿Qué opinas?</p>
             <form enctype="multipart/form-data" class="clearfix">
               <textarea name="comentario" required></textarea>
               <input type="file" name="archivo" id="archivo" class="comentarioFile">
               <input type="submit" name="botonComentario" id="botonComentario" value="Enviar" class="botonComentario">
             </form>
-            <img src="http://www.teohilfe.cl/clientes/tmido/imag/icono_triangulo_comentarios.png" width="25" height="19" alt="triangulo" class="comentarioTriangulo"></section>
+            <img src="/imag/icono_triangulo_comentarios.png" width="25" height="19" alt="triangulo" class="comentarioTriangulo"></section>
           <section>
             <p class="comentarioUsuarioResponde">Arturo Prat</p>
-            <img src="http://www.teohilfe.cl/clientes/tmido/imag/user2.jpg" width="40" height="40" alt="NOMBRE_USUARIO_DINAMICO" class="comentarioUsuario">
+            <img src="/tmido/imag/user2.jpg" width="40" height="40" alt="NOMBRE_USUARIO_DINAMICO" class="comentarioUsuario">
             <div class="comentarioDeUsuario"> alberto zamoraHace 2 horas<br>
               aca en chile tenemos a varios udi igual que lopez y andan libres por las calles,incluso algunos sediciosos se postulan para alcaldes. Manuel Rodriguez La presidenta Bachelet y su gobierno en silencio ,haciendose complice de las burradas de Maburro.
               Ella defiende solo los DDHH de izquierda. <a href="#" class="comentarioLeeMas">Ver más...</a></div>
@@ -144,10 +147,18 @@
         </div>
       </div>
       <div id="fichaStats">
-        <h3>Estadísticas en Tiempo Real</h3>
-        <section> <img src="http://www.teohilfe.cl/clientes/tmido/imag/grafico_barra.png" width="293" height="304" alt="grafico barras"></section>
-        <section> <img src="http://www.teohilfe.cl/clientes/tmido/imag/grafico_anillo.png" width="195" height="196" alt="grafico anillo"></section>
-        <a href="http://www.teohilfe.cl/clientes/tmido/graficos.php" class="verGraficos tooltip" title="<span class='tituloPDF'>Política:</span> Discurso de la Presidenta el 21 de mayo">Ver todos los gráficos comparativos</a> </div>
+        <!--<h3>Estadísticas en Tiempo Real</h3>-->
+        <section >
+          <div id="graf1_ficha" style="max-width:250px;margin-left:35px; height:250px;">
+
+          </div>
+        </section>
+        <section>
+          <div id="graf2_ficha" style="max-width:310px;">
+
+          </div>
+        </section>
+        <a href="/tmido/graficos.php" class="verGraficos tooltip" title="<span class='tituloPDF'>Política:</span> Discurso de la Presidenta el 21 de mayo">Ver todos los gráficos comparativos</a> </div>
     </div>
     <div id="fichaRight">
       <h2>Más mediciones<br>

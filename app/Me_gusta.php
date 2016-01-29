@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Publicacion as Publicacion;
 class Me_gusta extends Model
 {
     //
@@ -19,4 +19,36 @@ class Me_gusta extends Model
     {
         return $this->belongsTo('App\Publicacion');
     }
+
+    //consultas
+    public static function comprobar_votacion_si($id_publicacion, $id_usuario)
+    {
+      return Me_gusta::where('publicaciones_id',$id_publicacion)
+      ->where('cuenta_usuario_id',$id_usuario)
+      ->where('si',1)->first();
+    //  return "si";
+    }
+
+
+    public static function inserta_megusta($id_publicacion, $id_usuario)
+    {
+       $megusta = new Me_gusta;
+       $megusta->cuenta_usuario_id = $id_usuario;
+       $megusta->publicaciones_id  = $id_publicacion;
+       $megusta->si = 1;
+       $megusta->no = 0;
+       $megusta->save();
+
+       $publicacion = Publicacion::find($id_publicacion);
+       $publicacion->megusta = $publicacion->megusta + 1;
+       $publicacion->save();
+
+
+    }
+
+    public static function inserta_nomegusta($id_publicacion,$id_usuario)
+    {
+
+    }
+
 }

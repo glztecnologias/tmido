@@ -14,19 +14,28 @@
     <div id="homeLeft">
     <h1><i class="fa fa-pencil-square-o"> </i>  Registro de Usuario</h1>
 
-    <form method="POST" action="/ingreso/register">
+    <form id="form_registro" method="POST" action="/ingreso/register">
         {!! csrf_field() !!}
-        <div>Nombres<input type="text" name="name" value="{{ old('name') }}">
+        <div class="input_registro"><label>Nombres</label></br><input type="text" name="name" value="{{ old('name') }}" required>
         </div>
-        <div>Apellidos<input type="text" name="lname" value="{{ old('lname') }}">
+        <br>
+        <div class="input_registro"><label>Apellidos</label><br><input type="text" name="lname" value="{{ old('lname') }}" required>
         </div>
-        <div>E-Mail<input type="email" name="email" value="{{ old('email') }}">
+        <br>
+        <div class="input_registro"><label>E-Mail</label><br><input type="email" name="email" value="{{ old('email') }}" required>
         </div>
-        <div>Contraseña<input type="password" name="password">
+<br>
+        <div class="input_registro"><label>Contraseña</label>  <br><input type="password" name="password" required>
         </div>
-        <div>Confirmar Contraseña<input type="password" name="password_confirmation">
+<br>
+        <div class="input_registro"><label>Confirmar Contraseña</label>  <br><input type="password" name="password_confirmation"required>
         </div>
-        <div><button type="submit">Enviar Datos</button>
+<br>
+          <div class="input_registro">  <input  type="checkbox" required >He leído y acepto la
+            <a href="javascript:void(0);" onclick="window.open('/politicas','Privacidad','scrollbars=yes,width=400,height=400')">
+              <b><u>Polí­tica de privacidad</u></b></a></div>
+<br>
+        <div class="input_registro"><button type="submit">Enviar Datos</button>
         </div>
     </form>
 

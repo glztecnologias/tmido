@@ -52,9 +52,41 @@ class Me_gusta extends Model
       $megusta->si = 0;
       $megusta->no = 1;
       $megusta->save();
+
       $publicacion = Publicacion::find($id_publicacion);
       $publicacion->nomegusta = $publicacion->nomegusta + 1;
       $publicacion->save();
+
+    }
+
+    public static function cambia_a_megusta($id_publicacion,$id_usuario)
+    {
+      $megusta = Me_gusta::where('publicaciones_id',$id_publicacion)
+      ->where('cuenta_usuario_id',$id_usuario)->first();
+      $megusta->si = 1;
+      $megusta->no = 0;
+      $megusta->save();
+
+      $publicacion = Publicacion::find($id_publicacion);
+      $publicacion->nomegusta = $publicacion->nomegusta - 1;
+      $publicacion->megusta = $publicacion->megusta + 1;
+      $publicacion->save();
+
+    }
+
+    public static function cambia_a_nomegusta($id_publicacion,$id_usuario)
+    {
+      $megusta = Me_gusta::where('publicaciones_id',$id_publicacion)
+      ->where('cuenta_usuario_id',$id_usuario)->first();
+      $megusta->si = 0;
+      $megusta->no = 1;
+      $megusta->save();
+
+      $publicacion = Publicacion::find($id_publicacion);
+      $publicacion->megusta = $publicacion->megusta - 1;
+      $publicacion->nomegusta = $publicacion->nomegusta + 1;
+      $publicacion->save();
+
 
     }
 

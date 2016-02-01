@@ -10,7 +10,7 @@
 @endforeach
       </select>
       <a  href="javascript:buscar();" type="image" name="botonBuscar" id="botonBuscar" src="" class="cinButton">
-        <img src="http://www.teohilfe.cl/clientes/tmido/imag/boton_buscar.png" alt="" />
+        <img src="/imag/boton_buscar.png" alt="" />
       </a>
     </form>
   </div>

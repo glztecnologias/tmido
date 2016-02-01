@@ -68,7 +68,7 @@
 				 <p class="fichaNombre">{{$publicacion_mg['titulo']}}</p>
 				 <p class="fichaPregunta">{{$publicacion_mg['descripcion_corta']}}</p>
 				 </section>
-				 <p class="fichaK"><i class="fa fa-thumbs-up tituloPulgar"></i>{{$publicacion_mg['neto_megusta']}}
+				 <p class="fichaK"><i class="fa fa-thumbs-up tituloPulgar"></i>{{$publicacion_mg['megusta']}}
 					 <span class="fichaCategoria">{{ $publicacion_mg->categoria->nombre }}</span>
 				 </p>
 				 <a href="/publicaciones/{{ $publicacion_mg->id }}" class="fichaOpina tooltip" title="¡Opina tú también!">¡Opina tú también!</a>
@@ -103,7 +103,7 @@
 								 <p class="fichaNombre">{{$publicacion_mg['titulo']}}</p>
 								 <p class="fichaPregunta">{{$publicacion_mg['descripcion_corta']}}</p>
 								 </section>
-								 <p class="fichaK"><i class="fa fa-thumbs-up tituloPulgar"></i>{{$publicacion_mg['neto_megusta']}}
+								 <p class="fichaK"><i class="fa fa-thumbs-up tituloPulgar"></i>{{$publicacion_mg['megusta']}}
 									 <span class="fichaCategoria">{{ $publicacion_mg->categoria->nombre }}</span>
 								 </p>
 								 <a href="/publicaciones/{{ $publicacion_mg->id }}" class="fichaOpina tooltip" title="¡Opina tú también!">¡Opina tú también!</a>

@@ -162,7 +162,7 @@
     </div>
     <div id="fichaRight">
       <h2>Más mediciones<br>
-        <span style="text-transform:none;">de </span> {{ $publicacion->categoria->nombre }}</h2>
+        <span style="text-transform:none;"> DE </span> {{ $publicacion->categoria->nombre }}</h2>
 @forelse($otras_pub_categoria as $otras)
       <div class="ficha"> <img src="{{$otras->url_foto}}" alt="Alexis Sánchez">
         <section class="fichaBackground3">

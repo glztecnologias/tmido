@@ -124,11 +124,13 @@ class PublicoController extends Controller
             }
             elseif($check_votacion->si == 1 AND $request->op == 'no')
             {
-              return " cambiar a no me gusta";
+              Me_gusta::cambia_a_nomegusta($request->idp,$usuario->id);
+              return "cambio de voto satisfactoriamente!...";
             }
             elseif($check_votacion->no == 1 AND $request->op == 'si')
             {
-                return " cambiar a si me gusta";
+              Me_gusta::cambia_a_megusta($request->idp,$usuario->id);
+              return "cambio de voto satisfactoriamente!...";
             }
         }
         else

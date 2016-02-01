@@ -7,7 +7,7 @@
 <link href="/css/colorbox.css" rel="stylesheet" type="text/css">
 <link href="/css/ranking.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="http://www.teohilfe.cl/clientes/tmido/css/tooltipster.css" />
+<link rel="stylesheet" type="text/css" href="/css/tooltipster.css" />
 <script src="/js/jquery-1.11.3.min.js"></script>
 <script src="/js/Selectyze.jquery.min.js"></script>
 <script src="/js/jquery-filestyle.min.js"></script>
@@ -15,8 +15,8 @@
 <script src="/js/jquery.slimscroll.min.js"></script>
 <script src="/js/jquery.tooltipster.min.js"></script>
 
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="/js/highcharts.js"></script>
+<script src="/js/exporting.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	$('.selectyze').Selectyze({

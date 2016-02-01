@@ -12,7 +12,7 @@
     <a href="/noticias">Noticias</a>
     <a href="/contacto">Contacto</a>
   </section>
-  <img src="http://www.teohilfe.cl/clientes/tmido/imag/footer_dialogo.png" width="110" height="86" alt="grafico dialogo" class="pieDialogo">
+  <img src="/imag/footer_dialogo.png" width="110" height="86" alt="grafico dialogo" class="pieDialogo">
   <p class="pieDerechos">Derechos Reservados 2001-2015<br>
     T-mido.com Derechos de Contenido Reservados </p>
   <div id="footerSocial"> <a href="http://www.vigaworks.com" target="_blank"><img src="/imag/footer_vigaworks.png" width="198" height="9" alt="Vigaworks" class="pieVigaworks"></a>

@@ -11,5 +11,9 @@
       <strong>{{ $datos_user->nombres }}</strong>
       <a href="/ingreso/logout"> Salir</a>
 
+      
+
+
+
       @endif
 @endsection

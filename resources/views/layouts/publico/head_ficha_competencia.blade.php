@@ -15,8 +15,8 @@
 <script src="/js/jquery.slimscroll.min.js"></script>
 <script src="/js/jcarousellite_1.0.1.min.js"></script>
 <script src="/js/jquery.tooltipster.min.js"></script>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="/js/highcharts.js"></script>
+<script src="/js/exporting.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	$('.selectyze').Selectyze({

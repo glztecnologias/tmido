@@ -51,7 +51,7 @@ class Publicacion extends Model
     }
     public static function tomar_dos_mas_me_gusta()
     {
-      return Publicacion::orderBy('neto_megusta', 'desc')->take(2)->get();
+      return Publicacion::orderBy('megusta', 'desc')->take(2)->get();
     }
     public static function tomar_misma_competencia($id_competencia)
     {

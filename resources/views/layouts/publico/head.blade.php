@@ -10,6 +10,7 @@
 <script src="/js/highcharts.js"></script>
 <script src="/js/exporting.js"></script>
 
+<script src="/js/star_raty/jquery.raty.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 	$('.selectyze').Selectyze({

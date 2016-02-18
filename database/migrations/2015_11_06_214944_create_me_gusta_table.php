@@ -17,7 +17,8 @@ class CreateMeGustaTable extends Migration
             $table->string('si', 45);
             $table->string('no', 45);
             $table->integer('cuenta_usuario_id')->unsigned();
-            $table->integer('publicaciones_id')->unsigned();
+            $table->integer('publicaciones_id')->unsigned()->nullable();
+            $table->integer('comentarios_id')->unsigned()->nullable();
             $table->timestamps();
         });
     }

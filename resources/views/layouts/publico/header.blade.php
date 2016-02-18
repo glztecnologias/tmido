@@ -4,12 +4,16 @@
 
 
 @if($datos_user = session('usuario'))
-
-<div id="txt_bienvenida">Bienvenido {{ $datos_user->nombres}} {{ $datos_user->apellidos}}
+&nbsp;&nbsp;
+  <div id="txt_bienvenida">
+  Bienvenido {{ $datos_user->nombres}} {{ $datos_user->apellidos}}
   <br>
   <a href="/cuenta" id="txt_cuenta" title="Ir a cuenta">Mi Cuenta <i class="fa fa-user"></i></a>
 | <a href="/ingreso/logout" id="txt_logout" title="Cerrar Sesion">  Salir <i class="fa fa-sign-out"></i></a>
+
 </div>
+<span><img src="{{ $datos_user->url_foto }}"  class="comentarioUsuario" width="40" height="40" style="float: right;"></span>
+
 @else
 
 <form method="post" enctype="multipart/form-data" action="/ingreso/login">

@@ -8,6 +8,8 @@ use App\Publicacion as Publicacion;
 use App\Categoria as Categoria;
 use App\Cuenta_usuario as Cuenta_usuario;
 use App\Me_gusta as Me_gusta;
+use App\Valoracion as Valoracion;
+use App\Comentario as Comentario;
 class PublicoController extends Controller
 {
 
@@ -29,6 +31,9 @@ class PublicoController extends Controller
       $categorias = Categoria::All();
       $publicacion = Publicacion::find($id);
       $otras_pub_categoria = Publicacion::tomar_misma_categoria($publicacion->categoria_id,$id);
+      $valoracion_pub = Valoracion::select_val_publicacion($id);
+      $comentarios = Comentario::select_comentarios($id);
+    //  return $comentarios;
     if( $publicacion->competencia_id == null)
     {
       $competidores = null;
@@ -40,7 +45,7 @@ class PublicoController extends Controller
 
     if($publicacion->estado->nombre=="activo")
     {
-       return view('ficha.index', compact('publicacion','categorias','competidores','otras_pub_categoria'));
+       return view('ficha.index', compact('publicacion','categorias','competidores','otras_pub_categoria','valoracion_pub','comentarios'));
     }
     else
     {
@@ -157,11 +162,39 @@ class PublicoController extends Controller
 
     }
 
-    public function votar_nomegusta(Request $request)
+
+
+
+
+    public function votar_valorar(Request $request)
     {
 
+      $usuario = session('usuario');
+      $request->session()->put('usuario', $usuario);
+
+      if($usuario)
+      {
+          $check_valoracion = Valoracion::comprobar_valoracion($request->idp,$usuario->id);
+          if($check_valoracion)
+          {
+             return "Lo sentimos, ya haz valorado esta publicacion!...";
+          }
+          else
+          {
+            Valoracion::inserta_valoracion($request->idp,$usuario->id,$request->val);
+            return "Gracias por tu voto!";
+          }
+        }
+      else
+      {
+        return "Debes acceder como usuario para votar!...";
+      }
 
     }
+
+
+
+
 
 
     public function busqueda($categoria, $palabra_clave = null)
@@ -187,5 +220,47 @@ class PublicoController extends Controller
         return view('directorio.index', compact('publicaciones','categorias','cat_id'));
     }
 
+public function comentar(Request $request)
+{
+  $usuario = session('usuario');
+  $request->session()->put('usuario', $usuario);
+  if($usuario)
+  {
+    Comentario::inserta_comentario($request->idp,$usuario->id,$request->com);
+    return "OK";
+  }
+  else
+  {
+    return "Debes acceder como usuario para Comentar!...";
+  }
+}
 
+
+public function votar_megusta_comentario(Request $request)
+    {
+    $usuario = session('usuario');
+    $request->session()->put('usuario', $usuario);
+
+    if($usuario)
+    {
+        $check_votacion = Me_gusta::comprobar_votacion_comentario($request->idcom,$usuario->id);
+
+        if($check_votacion)
+        {
+            return "Lo sentimos, ya haz votado anteriormente!...";
+
+        }
+        else
+        {
+
+            Me_gusta::inserta_megusta_comentario($request->idcom,$usuario->id,$request->op);
+
+          return "Gracias por tu voto!";
+        }
+      }
+    else
+    {
+      return "Debes acceder como usuario para votar!...";
+    }
+  }
 }

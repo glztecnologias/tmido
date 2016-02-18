@@ -1249,8 +1249,8 @@ a.tooltipNO[title] {
 
 #txt_bienvenida{
 	float: right;
-margin-top:20px;
-
+margin-top:7px;
+margin-left: 10px;
 font-size: 12px;
 margin-right: 30px;
 text-shadow: 0px 0.2px 0.1px gray;
@@ -1273,3 +1273,35 @@ text-shadow: 0px 0.2px 0.1px gray;
   #form_registro label{
 	 float:left;
  }
+.datos_usuario{
+	width: 350px;
+	margin: 10px 10px 10px 10px;
+}
+
+.input_datos{
+float: right;
+margin-bottom: 5px;
+}
+.label_datos{
+float: left;
+font-weight: bold;
+}
+.n_val_estrella{
+	font-weight: bold;
+}
+.n_val_estrella2{
+	font-weight: bold;
+	font-size: 25px;
+}
+.boton_val_general{
+	background-color: #D42D2C;
+font-size: 12px;
+font-weight: 700;
+color: #FFF;
+border-radius: 4px;
+padding: 4px 4px 4px 4px;
+}
+
+.boton_val_general:hover {
+    background-color: #099;
+}

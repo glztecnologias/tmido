@@ -82,7 +82,11 @@
 
       <div id="fichaComentarios">
         <section class="clearfix">
-          <p class="comentariosRanking"><i class="fa fa-star estrellita"></i><i class="fa fa-star estrellita"></i><i class="fa fa-star estrellita"></i><i class="fa fa-star estrellita"></i><i class="fa fa-star estrellita"></i><i class="fa fa-star estrellita"></i><i class="fa fa-star-half-o estrellita"></i></p>
+          <p class="comentariosRanking">
+            <span class="valoracion" ></span>&nbsp;&nbsp;
+            <span id="n_valoracion" class="n_val_estrella"></span>&nbsp;&nbsp;
+            <span><a class="boton_val_general" href="#">Quiero Valorar!</a></span>
+          </p>
           <p class="comentariosVisitas">{{ $publicacion->contador }} Visitas</p>
           <p class="comentariosUser">Usuario: <span>Juan sin Tierra</span></p>
           <br>
@@ -91,58 +95,96 @@
             {{ $publicacion->descripcion_larga }}
           </p>
         </section>
-
         <section class="clearfix">
           <a href="javascript:voto_gusto({{ $publicacion->id }},'si');"><p class="comentarioPublico"><i class="fa fa-thumbs-up pulgarUp"></i> {{ $publicacion->megusta }}</p></a>
           <a href="javascript:voto_gusto({{ $publicacion->id }},'no');"><p class="comentarioPublico"><i class="fa fa-thumbs-down pulgarDown"></i> {{ $publicacion->nomegusta }}</p></a>
           <p class="comentarioFecha">Publicado el {{ $publicacion->f_inicio }}</p>
         </section>
+        <section class="clearfix">
+          <script>(function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+          </script>
+          <script>
+          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+          </script>
+          <div class="fb-share-button" data-href="http://www.t-mido.cl/publicaciones/{{ $publicacion->id }}" data-layout="button_count" style="top: -5px;"></div>
+          <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.t-mido.cl/publicaciones/{{ $publicacion->id }}" data-lang="es">Twittear</a>
 
-        <section class="clearfix"> <img src="/imag/dummie_socialmedia.png" width="250" height="24" alt="dummie socialmedia" style="margin-left:3px;"> </section>
+          <!-- Place this tag where you want the share button to render. -->
+          <div class="g-plus" data-action="share" data-annotation="bubble"></div>
+
+          <!-- Place this tag after the last share tag. -->
+          <script type="text/javascript">
+            window.___gcfg = {lang: 'es-419'};
+
+            (function() {
+              var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+              po.src = 'https://apis.google.com/js/platform.js';
+              var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+            })();
+          </script>
+
+           <!--<img src="/imag/dummie_socialmedia.png" width="250" height="24" alt="dummie socialmedia" style="margin-left:3px;">-->
+
+         </section>
 
         <!--COMENTARIOS-->
         <div id="comentarios">
-          <section class="comentarioPrincipal"> <img src="/tmido/imag/user1.jpg" width="40" height="40" alt="NOMBRE_USUARIO_DINAMICO" class="comentarioUsuario">
+
+
+          <section class="comentarioPrincipal">
+@if($datos_user = session('usuario'))
+            <img src="{{ $datos_user->url_foto }}" width="40" height="40"  class="comentarioUsuario">
+@else
+            <img src="/imag/user.png" width="40" height="40" class="comentarioUsuario">
+
+@endif
             <p class="comentarioOpinion">¿Qué opinas?</p>
             <form enctype="multipart/form-data" class="clearfix">
-              <textarea name="comentario" required></textarea>
-              <input type="file" name="archivo" id="archivo" class="comentarioFile">
-              <input type="submit" name="botonComentario" id="botonComentario" value="Enviar" class="botonComentario">
+              {!! csrf_field() !!}
+              <textarea name="comentario" id="comentario" required></textarea>
+@if($datos_user)
+              <input type="hidden" name="id_usuario" id="id_usuario" value="{{ $datos_user->id }}">
+@endif
+              <!--<input type="file" name="archivo" id="archivo" class="comentarioFile">-->
+              <a  href="javascript:comentar();" style="float: right;" class="">Enviar</a>
             </form>
-            <img src="/imag/icono_triangulo_comentarios.png" width="25" height="19" alt="triangulo" class="comentarioTriangulo"></section>
-          <section>
-            <p class="comentarioUsuarioResponde">Arturo Prat</p>
-            <img src="/tmido/imag/user2.jpg" width="40" height="40" alt="NOMBRE_USUARIO_DINAMICO" class="comentarioUsuario">
-            <div class="comentarioDeUsuario"> alberto zamoraHace 2 horas<br>
-              aca en chile tenemos a varios udi igual que lopez y andan libres por las calles,incluso algunos sediciosos se postulan para alcaldes. Manuel Rodriguez La presidenta Bachelet y su gobierno en silencio ,haciendose complice de las burradas de Maburro.
-              Ella defiende solo los DDHH de izquierda. <a href="#" class="comentarioLeeMas">Ver más...</a></div>
-            <div class="comentarioAccion">
-              <p class="comentarioNegativo"><i class="fa fa-thumbs-up pulgarDown"></i> 870</p>
-              <p class="ComentarioPositivo"><i class="fa fa-thumbs-up pulgarUp"></i> 100</p>
-              <a href="#" class="comentarioResponder">Responder</a> </div>
+            <img src="/imag/icono_triangulo_comentarios.png" width="25" height="19" alt="triangulo" class="comentarioTriangulo">
           </section>
-          <section>
-            <p class="comentarioUsuarioResponde">Ambrosio O'Higgins</p>
-            <img src="http://www.teohilfe.cl/clientes/tmido/imag/user3.jpg" width="40" height="40" alt="NOMBRE_USUARIO_DINAMICO" class="comentarioUsuario">
-            <div class="comentarioDeUsuario"> La presidenta Bachelet y su gobierno en silencio ,haciendose complice de las burradas de Maburro.<br>
-              Ella defiende solo los DDHH de izquierda. La presidenta Bachelet y su gobierno en silencio ,haciendose complice de las burradas de Maburro. <br>
-              Ella defiende solo los DDHH de izquierda. <a href="#" class="comentarioLeeMas">Ver más...</a></div>
-            <div class="comentarioAccion"> <a href="#" class="comentarioAdjunto">Ver adjunto</a>
-              <p class="comentarioNegativo"><i class="fa fa-thumbs-up pulgarDown"></i> 870</p>
-              <p class="ComentarioPositivo"><i class="fa fa-thumbs-up pulgarUp"></i> 100</p>
-              <a href="#" class="comentarioResponder">Responder</a> </div>
-          </section>
-          <section>
-            <p class="comentarioUsuarioResponde">Manuel Rodriguez</p>
-            <img src="http://www.teohilfe.cl/clientes/tmido/imag/user4.jpg" width="40" height="40" alt="NOMBRE_USUARIO_DINAMICO" class="comentarioUsuario">
-            <div class="comentarioDeUsuario"> Bacon ipsum dolor amet bacon pancetta turducken boudin beef. Porchetta landjaeger pork belly shank pork cupim. Drumstick short ribs rump, tenderloin tri-tip pork flank. T-bone venison pastrami kielbasa short ribs prosciutto sirloin landjaeger pork belly pork loin jerky bresaola tri-tip. <a href="#" class="comentarioLeeMas">Ver más...</a> </div>
-            <div class="comentarioAccion"> <a href="#" class="comentarioAdjunto">Ver adjunto</a>
-              <p class="comentarioNegativo"><i class="fa fa-thumbs-up pulgarDown"></i> 870</p>
-              <p class="ComentarioPositivo"><i class="fa fa-thumbs-up pulgarUp"></i> 100</p>
-              <a href="#" class="comentarioResponder">Responder</a> </div>
-          </section>
-          <a href="javascript:void(0);" class="comentarioMas">Ver más comentarios</a>
 
+
+<span class="cont_comentarios">
+@forelse($comentarios as $com)
+<section>
+  <p class="comentarioUsuarioResponde">{{ $com->cuenta_usuario->nombres }} {{ $com->cuenta_usuario->apellidos }}</p>
+
+  <img src="{{ $com->cuenta_usuario->url_foto }}" width="40" height="40" class="comentarioUsuario">
+
+  <div class="comentarioDeUsuario">
+<time class="timeago" datetime="{{ $com->created_at}}" title="{{ $com->created_at}}"></time>
+<br>
+<span class="comentario">
+{{ $com->contenido }}
+
+<!--<a href="#" class="comentarioLeeMas">Ver más...</a>-->
+</div>
+</span>
+  <div class="comentarioAccion">
+    <a href="javascript:voto_gusto_comenta({{ $com->id }},'no');"><p class="comentarioNegativo"><i class="fa fa-thumbs-down pulgarDown"></i>{{ $com->nomegusta }}</p></a>
+    <a href="javascript:voto_gusto_comenta({{ $com->id }},'si');"><p class="ComentarioPositivo"><i class="fa fa-thumbs-up pulgarUp"></i>{{ $com->megusta }}</p></a>
+  <!--  <a href="#" class="comentarioResponder">Responder</a> --></div>
+</section>
+@empty
+
+@endforelse
+
+          <a href="javascript:void(0);" class="comentarioMas">Ver más comentarios</a>
+</span>
           <!--CIERRE SACAR ESTE COMENTARIO-->
         </div>
       </div>
@@ -180,4 +222,5 @@
     <br>
   </div>
 </div>
+
 @endsection

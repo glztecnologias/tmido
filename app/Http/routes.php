@@ -46,3 +46,12 @@ Route::get('/publicaciones/{id}', ['middleware' => 'VisitaPublicacion', 'uses' =
 
 //rutas me gusta (para opcion si/no)
 Route::post('/megusta','PublicoController@votar_megusta');
+
+//ruta valorar general ficha (id y nota)
+Route::post('/valorar','PublicoController@votar_valorar');
+
+//ruta comentar general ficha (idp,id usuario, comentario)
+Route::post('/comentar','PublicoController@comentar');
+
+//ruta comentar comentario ficha (idp,id usuario, comentario)
+Route::post('/megustacomentario','PublicoController@votar_megusta_comentario');

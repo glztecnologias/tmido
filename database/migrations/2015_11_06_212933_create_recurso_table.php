@@ -16,9 +16,9 @@ class CreateRecursoTable extends Migration
             $table->increments('id');
             $table->string('titulo', 45);
             $table->string('descripcion', 200);
-            $table->string('url', 45);
+            $table->string('url', 500);
             $table->integer('publicaciones_id')->unsigned()->nullable();
-            $table->integer('tipo_recurso')->unsigned();
+            $table->integer('tipo_recurso_id')->unsigned();
             $table->integer('comentarios_id')->unsigned()->nullable();
             $table->timestamps();
 

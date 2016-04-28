@@ -19,7 +19,7 @@ class CreateCuentaUsuarioTable extends Migration
             $table->string('apellidos', 150)->nullable();
             $table->string('rut', 45)->nullable();
             $table->string('email', 45);
-            $table->string('url_foto', 200);
+            $table->string('url_foto', 400);
             $table->string('comuna', 45)->nullable();
             $table->string('ciudad', 45)->nullable();
             $table->string('pais', 45)->nullable();

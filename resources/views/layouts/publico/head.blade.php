@@ -1,4 +1,6 @@
 
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/themes/redmond/jquery-ui.css"/>
+<link rel="stylesheet" href="/css/jeoquery.css" />
 <link href="/css/tmido.css" rel="stylesheet" type="text/css">
 <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -11,6 +13,10 @@
 <script src="/js/exporting.js"></script>
 
 <script src="/js/star_raty/jquery.raty.js"></script>
+
+
+<script type="text/javascript" src="/js/jeoquery.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function() {
 	$('.selectyze').Selectyze({

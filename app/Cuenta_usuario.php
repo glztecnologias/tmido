@@ -28,7 +28,10 @@ class Cuenta_usuario extends Model implements AuthenticatableContract,
     {
         return $this->belongsTo('App\Estado');
     }
-
+    public function ramdom_code() //relacion con estado de cuenta de usuario
+    {
+        return $this->hasOne('App\Random_code');
+    }
 
     //consultas...
 

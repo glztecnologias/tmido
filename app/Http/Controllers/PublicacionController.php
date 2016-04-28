@@ -8,36 +8,29 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Publicacion as Publicacion;
+use App\Categoria as Categoria;
+use App\Competencia as Competencia;
+use App\Estado as Estado;
 
 class PublicacionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $publicaciones = Publicacion::orderBy('id', 'desc')->get();
         return view('admin.publicacion.index', compact('publicaciones'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        return view('admin.publicacion.create');
+
+        $categorias = Categoria::orderBy('id', 'desc')->get();
+        $competencias = Competencia::orderBy('id', 'desc')->get();
+        $estados = Estado::orderBy('id', 'desc')->get();
+        return view('admin.publicacion.create',compact('categorias','competencias','estados'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $publicacion = new Publicacion;
@@ -45,30 +38,22 @@ class PublicacionController extends Controller
         $publicacion->descripcion_corta = $request->input('descripcion_corta');
         $publicacion->descripcion_larga = $request->input('descripcion_larga');
         $publicacion->url_foto = $request->input('url_foto');
+
+        $publicacion->competencia_id = $request->input('competencia');
+        $publicacion->categoria_id = $request->input('categoria');
+        $publicacion->estado_id = $request->input('estado');
+
         $publicacion->save();
-
-
         return redirect('/admin/publicaciones');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         $publicacion = Publicacion::find($id);
         return view('admin.publicacion.show', compact('publicacion'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $publicacion = Publicacion::find($id);
@@ -76,33 +61,22 @@ class PublicacionController extends Controller
         return view('admin.publicacion.edit', compact('publicacion'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $publicacion = Publicacion::find($id);
         $publicacion->titulo = $request->input('titulo');
         $publicacion->descripcion_corta = $request->input('descripcion_corta');
         $publicacion->descripcion_larga = $request->input('descripcion_larga');
-        $publicacion->contador = $request->input('contador');
+        //$publicacion->contador = $request->input('contador');
         $publicacion->url_foto = $request->input('url_foto');
+        $publicacion->competencia_id = $request->input('competencia');
+        $publicacion->categoria_id = $request->input('categoria');
         $publicacion->save();
 
 
         return redirect('/admin/publicaciones/'.$id);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         Publicacion::destroy($id);

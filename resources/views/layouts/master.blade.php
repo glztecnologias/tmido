@@ -12,6 +12,7 @@
 <link rel="apple-touch-icon" href="/imag/ico120.png" sizes="120x120">
 <link rel="apple-touch-icon" href="/imag/ico144.png" sizes="144x144">
 <link rel="apple-touch-icon" href="/imag/ico152.png" sizes="152x152">
+
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
 @if ( $seccion == 'ficha' )
 

@@ -14,8 +14,12 @@ class CreateDescriptorEvaluacionTable extends Migration
     {
         Schema::create('descriptor_evaluacion', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre', 45);
-            $table->string('observacion', 200);
+            $table->string('nombre', 100);
+            $table->string('descripcion', 500);
+            $table->string('pregunta', 500);
+            $table->integer('evaluaciones_id')->unsigned()->nullable();
+
+
             $table->timestamps();
               $table->index(['nombre']);
         });

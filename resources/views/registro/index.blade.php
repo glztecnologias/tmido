@@ -12,6 +12,11 @@
         <!--BANNER END-->
 
     <div id="homeLeft">
+      @if (session('error'))
+     <div class="alert alert-success">
+         {{ session('error') }}
+     </div>
+     @endif
     <h1><i class="fa fa-pencil-square-o"> </i>  Registro de Usuario</h1>
 
     <form id="form_registro" method="POST" action="/ingreso/register">

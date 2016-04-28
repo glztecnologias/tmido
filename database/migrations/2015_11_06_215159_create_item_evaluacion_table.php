@@ -19,8 +19,11 @@ class CreateItemEvaluacionTable extends Migration
             $table->mediumText('respuesta_desarrollo');
             $table->dateTime('f_creacion');
             $table->integer('descriptor_evaluacion_id')->unsigned();
-            $table->integer('evaluaciones_id')->unsigned();
             $table->integer('evaluador_id')->unsigned();
+
+            $table->integer('publicaciones_id')->unsigned()->nullable();
+            // si es una publicacion de competencia se activa esto
+
             $table->timestamps();
         });
     }

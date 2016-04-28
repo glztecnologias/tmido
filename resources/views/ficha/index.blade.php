@@ -11,7 +11,7 @@
 @else
 <!--COMPETENCIA-->
 <div id="fichaMultiple">
-    <h2>Discursos Presidenciales 2015</h2>
+    <h2>{{$publicacion->competencia->nombre}}</h2>
     <a href="javascript:void(0);" class="carruselPrev">Previo</a>
 
     <div style="visibility: visible; overflow: hidden; position: relative; z-index: 2; left: 0px; width: 944px;" id="carrusel">
@@ -48,35 +48,34 @@
 
 
       <div id="fichaVideo" class="clearfix">
+
+
         <div id="mediaContenedor">
           <div id="foto-container">
             <img src="{{ $publicacion->url_foto }}">
-          </div>
-          <div id="video-container" class="hide">
-
-            <iframe width="480" height="293" src="https://www.youtube.com/embed/P5_Msrdg3Hk" frameborder="0" allowfullscreen></iframe>
-
-          </div>
-          <div id="audio-container" class="hide">
-            <audio controls preload="auto">
-              <source src="http://www.teohilfe.cl/clientes/tmido/descargas/demo.ogg" type="audio/ogg">
-              <source src="http://www.teohilfe.cl/clientes/tmido/descargas/audio.mp3" type="audio/mpeg">
-              <p>Tú navegador no soporta el audio de HTML5, actualizalo por favor.</p>
-            </audio>
           </div>
         </div>
 
 
         <div id="fichaVideoSeccion">
           <section>
-            <a href="http://www.teohilfe.cl/clientes/tmido/visorPDF.php" class="botonFicha number1 verPDF tooltip" title="<span class='tituloPDF'>Archivo PDF:</span> Titulo_dinamico_aca">Archivos PDF</a>
+            <a href="http://michellebachelet.cl/pdf/50medidasMB.pdf" class="botonFicha number1 verPDF tooltip" title="<span class='tituloPDF'>Archivo PDF:</span> Titulo_dinamico_aca">Archivos PDF</a>
             <a href="#" class="botonFicha number2">Presentación Power Point</a>
             <a href="#" class="botonFicha number3">Audio</a>
             <a href="#" class="botonFicha number4">Video</a>
           </section>
           <p class="fichaTime"><span>QUEDAN:</span><br>
             10 días y 5 horas para terminar evaluación</p>
-          <a href="pool.php" class="fichaEvalua tooltip" title="<span class='tituloPDF'>Política:</span> Discurso de la Presidenta el 21 de mayo">Evalua tú también</a> </div>
+@if($publicacion->competencia_id == null)
+
+<a href="/evaluacion/{{ $publicacion->id }}" class="fichaEvalua tooltip" title="">Evalua tú también</a>
+
+@else
+<a href="/evaluacion/{{ $publicacion->id }}/competencia/{{ $publicacion->competencia->id }}" class="fichaEvalua tooltip" title="">Evalua tú también</a>
+
+@endif
+
+        </div>
       </div>
 
 
@@ -207,7 +206,7 @@
         <span style="text-transform:none;"> DE </span> {{ $publicacion->categoria->nombre }}</h2>
 @forelse($otras_pub_categoria as $otras)
       <div class="ficha"> <img src="{{$otras->url_foto}}" alt="Alexis Sánchez">
-        <section class="fichaBackground3">
+        <section class="fichaBackground3" style="background: {{ $otras->categoria->descripcion }} none repeat scroll 0% 0%;">
           <p class="fichaNombre">{{ $otras->titulo }}</p>
           <p class="fichaPregunta">{{ $otras->descripcion_corta }}</p>
         </section>

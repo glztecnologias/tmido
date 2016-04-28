@@ -11,20 +11,41 @@
 |
 */
 
-Route::get('/', function () {
-    return redirect('publicaciones');
-  //  return view('inicio',['nombre'=>'Daniel']);
-  //return view('registro.index',);
-});
+
+
+//ADMINISTACION ********************************************************
+
+Route::resource('/admin/publicaciones', 'PublicacionController');
+Route::resource('/admin/categorias', 'CategoriaController');
+
+Route::resource('/admin/competencias', 'CompetenciaController');
+Route::resource('/admin/estados', 'EstadoController');
+Route::resource('/admin/tipo_recursos', 'Tipo_recursoController');
+Route::resource('/admin/recursos','RecursoController');
+Route::resource('/admin/tipo_evaluacion', 'Tipo_evaluacionController');
+
+
+
+Route::resource('/admin/evaluacion', 'EvaluacionController');
+
+Route::resource('/admin/evaluacion/{id?}/{id_com?}/create/','EvaluacionController@create');
+
+
+
+
+
+Route::resource('/admin', 'AdminController');
+// ********************************************************************
+
+
+
+//PUBLICAS ************************************************************
+Route::get('/', function () {return redirect('publicaciones');});
 Route::get('/registro','PublicoController@muestra_registro');
 Route::get('/publicaciones','PublicoController@index');
 
-
 Route::get('/publicaciones/busqueda/{categoria}/{palabra_clave?}', 'PublicoController@busqueda');
 //Route::get('/publicaciones/busqueda/{categoria}', 'PublicoController@busqueda');
-
-Route::resource('/admin/publicaciones', 'PublicacionController');
-Route::resource('/admin', 'AdminController');
 
 Route::get('/t-mido','PublicoController@muestra_proyecto');
 Route::get('/noticias','PublicoController@muestra_noticias');
@@ -43,7 +64,6 @@ Route::post('/ingreso/register', 'IngresoController@postRegister');
 
 Route::get('/publicaciones/{id}', ['middleware' => 'VisitaPublicacion', 'uses' => 'PublicoController@show']);
 
-
 //rutas me gusta (para opcion si/no)
 Route::post('/megusta','PublicoController@votar_megusta');
 
@@ -55,3 +75,17 @@ Route::post('/comentar','PublicoController@comentar');
 
 //ruta comentar comentario ficha (idp,id usuario, comentario)
 Route::post('/megustacomentario','PublicoController@votar_megusta_comentario');
+
+//ruta evaluar items  ficha ()
+Route::post('/evaluar_items','PublicoController@evaluar_items');
+
+
+//ruta para validar la creacion de cuenta con el link enviado al correo
+Route::get('/verificacion_correo/{code}','IngresoController@verificacion_correo');
+
+
+Route::get('/evaluacion/{id_publicacion}','PublicoController@show_evaluacion_publicacion');
+
+Route::get('/evaluacion/{id_publicacion}/competencia/{id_competencia}','PublicoController@show_evaluacion_competencia');
+
+// ********************************************************************

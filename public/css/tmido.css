@@ -1274,14 +1274,21 @@ text-shadow: 0px 0.2px 0.1px gray;
 	 float:left;
  }
 .datos_usuario{
-	width: 350px;
+	width: 500px;
 	margin: 10px 10px 10px 10px;
+}
+.country_input{
+	float: right;
 }
 
 .input_datos{
 float: right;
 margin-bottom: 5px;
 }
+input.input_datos{
+	width: 295px;
+}
+
 .label_datos{
 float: left;
 font-weight: bold;

@@ -10,6 +10,10 @@ use App\Cuenta_usuario as Cuenta_usuario;
 use App\Me_gusta as Me_gusta;
 use App\Valoracion as Valoracion;
 use App\Comentario as Comentario;
+use App\Evaluacion as Evaluacion;
+use App\Tipo_evaluacion as Tipo_evaluacion;
+use App\Descriptor_evaluacion as Descriptor_evaluacion;
+
 class PublicoController extends Controller
 {
 
@@ -263,4 +267,57 @@ public function votar_megusta_comentario(Request $request)
       return "Debes acceder como usuario para votar!...";
     }
   }
+
+public function show_evaluacion_publicacion($id_publ)
+{
+$publicacion=Publicacion::where('id',$id_publ)->first();
+$evaluacion = Evaluacion::where('publicaciones_id',$id_publ)->first();
+$ideva=$evaluacion->id;
+$descriptores = Descriptor_evaluacion::where('evaluaciones_id',$ideva)->get();
+return view('evaluacion.index',compact('evaluacion','descriptores','publicacion'));
+}
+
+public function show_evaluacion_competencia($id_publ,$id_com)
+{
+$publicacion=Publicacion::where('id',$id_publ)->first();
+$evaluacion = Evaluacion::where('competencia_id',$id_com)->first();
+$ideva=$evaluacion->id;
+$descriptores = Descriptor_evaluacion::where('evaluaciones_id',$ideva)->get();
+return view('evaluacion.index',compact('evaluacion','descriptores','publicacion'));
+}
+
+public function evaluar_items(Request $request)
+{
+
+//publicacion   id de publicacion.
+//descriptores  array de id de descriptores.
+//puntajes array de puntajes de descriptores.
+
+
+  $usuario = session('usuario');
+  $request->session()->put('usuario', $usuario);
+
+  if($usuario)
+  {
+      $check_valoracion = Valoracion::comprobar_valoracion($request->idp,$usuario->id);
+      if($check_valoracion)
+      {
+         return "Lo sentimos, ya haz valorado esta publicacion!...";
+      }
+      else
+      {
+        Valoracion::inserta_valoracion($request->idp,$usuario->id,$request->val);
+        return "Gracias por tu voto!";
+      }
+    }
+  else
+  {
+    return "Debes acceder como usuario para votar!...";
+  }
+
+
+
+}
+
+
 }

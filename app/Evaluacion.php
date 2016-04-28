@@ -15,8 +15,13 @@ class Evaluacion extends Model
         return $this->belongsTo('App\Tipo_evaluacion');
     }
 
-    public function publicaciones() //relacion con tipo de evaluacion
+    public function publicaciones() //relacion con publicacion (puede ser null) 
     {
         return $this->belongsTo('App\Publicacion');
+    }
+
+    public function competencia() //relacion con compentencia (puede ser null)
+    {
+      return $this->belongsTo('App\Competencia');
     }
 }

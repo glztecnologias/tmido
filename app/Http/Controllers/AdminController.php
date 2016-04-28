@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+
+use App\Publicacion as Publicacion;
+use App\Categoria as Categoria;
 
 class AdminController extends Controller
 {
@@ -17,7 +19,7 @@ class AdminController extends Controller
     public function index()
     {
         //
-      return view('admin.dashboard'); 
+      return view('admin.dashboard');
     }
 
     /**

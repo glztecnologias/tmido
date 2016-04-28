@@ -1,4 +1,6 @@
 
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/themes/redmond/jquery-ui.css"/>
+<link rel="stylesheet" href="/css/jeoquery.css" />
 <link href="/css/tmido.css" rel="stylesheet" type="text/css">
 <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="/css/Selectyze.jquery.css" rel="stylesheet" type="text/css">
@@ -21,8 +23,11 @@
 <script src="/js/star_raty/jquery.raty.js"></script>
 
 
+<script type="text/javascript" src="/js/jeoquery.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function() {
+
 	$('.selectyze').Selectyze({
 		theme:'beta', effectOpen:'fade', effectClose:'fade'
 	});
@@ -48,17 +53,34 @@ $(document).ready(function() {
 		contentAsHTML: true
 	});
 
-	//botones divs  audio video
-	$('.number3').click(function(noLink) {
-		noLink.preventDefault();
-		$('#video-container').addClass('hide');
-		$('#audio-container').removeClass();
-	});
-	$('.number4').click(function(noLink) {
-		noLink.preventDefault();
-		$('#audio-container').addClass('hide');
-		$('#video-container').removeClass();
-	});
+
+		//botones divs  audio video
+	  $('.number2').click(function(noLink) {
+	    noLink.preventDefault();
+	    //$('#video-container').addClass('hide');
+	    //$('#audio-container').removeClass();
+	    var cont='<iframe style="" src="http://docs.google.com/viewer?url=http://www.gorevalparaiso.gob.cl/archivos/archivoDocumento/GORE_ARI_Genero_2016.ppt&amp;embedded=true" width="474" height="298"></iframe>';
+	    $('#mediaContenedor').html(cont);
+
+	  });
+		$('.number3').click(function(noLink) {
+			noLink.preventDefault();
+			//$('#video-container').addClass('hide');
+			//$('#audio-container').removeClass();
+	    var audio= '<div id="audio-container"><audio controls preload="auto"><source src="http://www.teohilfe.cl/clientes/tmido/descargas/demo.ogg" type="audio/ogg">';
+	        audio+='<source src="http://www.teohilfe.cl/clientes/tmido/descargas/audio.mp3" type="audio/mpeg">';
+	        audio+='<p>Tú navegador no soporta el audio de HTML5, actualizalo por favor.</p></audio></div>';
+
+	    $('#mediaContenedor').html(audio);
+
+		});
+		$('.number4').click(function(noLink) {
+			noLink.preventDefault();
+			//$('#audio-container').addClass('hide');
+			//$('#video-container').removeClass();
+	    $('#mediaContenedor').html('<iframe width="480" height="293" src="https://www.youtube.com/embed/P5_Msrdg3Hk" frameborder="0" allowfullscreen></iframe>');
+
+		});
 
 	// colorbox
 	$('.verPDF').colorbox({
@@ -72,11 +94,28 @@ $(document).ready(function() {
 		height:410,
 		scalePhotos: false,
 		onComplete: function() {
+
 			$('#cboxLoadedContent').slimScroll({
 					color: '#32A19B',
 					height: '380px',
 					distance: '0px'
 				});
+
+				$('.valoracion3').raty({
+					number: 7,
+					score: 1,
+				 starHalf   : 'star-half-big.png',
+		     starOff    : 'star-off-big.png',
+		     starOn     : 'star-on-big.png',
+				 path: '/imag/',
+				 hints: ['','','','','','',''],
+					click: function(score, evt) {
+          var id= $(this).attr('id')+"_r";
+					$('#'+id).html(score);
+						}
+
+				});
+
 			}
 	});
 
@@ -160,6 +199,7 @@ $(document).ready(function() {
 	});
 
 
+
 	//***********************************/
 	$('.boton_val_general').colorbox({
 		width:400,
@@ -215,6 +255,34 @@ function voto_valorar()
 		alert(data);
 		location.reload();
 	});
+}
+
+function evaluar_items()
+{
+  var idp = {{ $publicacion->id }};
+  var ids_descriptores=new Array(); //array
+  var puntajes = new Array(); //array
+  var count=0;
+	var count2;
+  $( ".item_descriptor span" ).each(function()
+   {
+   if($(this).attr('class')=="valoracion3"){
+       ids_descriptores.push($(this).attr('id'));
+   }
+   if($(this).attr('class')=="valor"){
+     puntajes.push($(this).text());
+   }
+   count++;
+ });
+
+ $.post( "/evaluar_items", {publicacion:idp,descriptores:ids_descriptores,puntajes:puntajes}, function( data ) {
+
+	 alert(data);
+	 location.reload();
+ });
+ /**for(count2=0;count2<ids_descriptores.length;count2++){
+ alert(ids_descriptores[count2]+' :: '+puntajes[count2]);}**/
+
 }
 
 function comentar()

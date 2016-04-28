@@ -19,7 +19,8 @@ class CreateEvaluacionesTable extends Migration
             $table->mediumText('instrucciones');
             $table->dateTime('f_inicio');
             $table->dateTime('f_termino');
-            $table->integer('publicaciones_id')->unsigned();
+            $table->integer('publicaciones_id')->unsigned()->nullable();
+            $table->integer('competencia_id')->unsigned()->nullable();
             $table->integer('tipo_evaluacion_id')->unsigned();
             $table->timestamps();
         });

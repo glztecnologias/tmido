@@ -24,6 +24,10 @@
             <input name="descripcion" placeholder="Descripcion" type="text" >
         </div>
         <div class="field">
+            <label>Fecha de Termino</label>
+            <input name="f_termino" class="datetimepicker" type="text" >
+        </div>
+        <div class="field">
             <label>Instrucciones</label>
             <input name="instrucciones" placeholder="Instrucciones" type="text" >
         </div>

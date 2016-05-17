@@ -19,14 +19,18 @@
 <script src="/js/jquery.tooltipster.min.js"></script>
 <script src="/js/highcharts.js"></script>
 <script src="/js/exporting.js"></script>
-
 <script src="/js/star_raty/jquery.raty.js"></script>
-
+	<script type="text/javascript" src="/js/dscountdown.js"></script>
+<link rel="stylesheet" href="/css/dscountdown.css" type="text/css" />
 
 <script type="text/javascript" src="/js/jeoquery.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
+
+	$('.regresiva').dsCountDown({
+		endDate: new Date("December 24, 2020 23:59:00")
+		});
 
 	$('.selectyze').Selectyze({
 		theme:'beta', effectOpen:'fade', effectClose:'fade'
@@ -274,8 +278,9 @@ function evaluar_items()
    }
    count++;
  });
-
- $.post( "/evaluar_items", {publicacion:idp,descriptores:ids_descriptores,puntajes:puntajes}, function( data ) {
+var descript = JSON.stringify(ids_descriptores);
+var puntajes_desc = JSON.stringify(puntajes);
+ $.post( "/evaluar_items", {publicacion:idp,descriptores:descript,puntajes:puntajes_desc}, function( data ) {
 
 	 alert(data);
 	 location.reload();

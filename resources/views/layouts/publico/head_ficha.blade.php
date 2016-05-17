@@ -30,12 +30,22 @@
 
 <script src="/js/jquery.timeago.js" type="text/javascript"></script>
 
+<script type="text/javascript" src="/js/dscountdown.js"></script>
+<link rel="stylesheet" href="/css/dscountdown.css" type="text/css" />
 
 <script type="text/javascript" src="/js/jeoquery.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
 
+  $('.regresiva').dsCountDown({
+    startDate: new Date("<?php echo date('F d, Y h:i:s'); ?>"), // this value is picked up by PHP script &lt;?php echo date('F d, Y h:i:s'); ?&gt;
+    endDate: new Date("<?php $date = new DateTime($evaluacion->f_termino);echo date_format($date,'F d, Y h:i:s'); ?>"),
+    titleDays: 'Dias', // Set the title of days
+    titleHours: 'Horas', // Set the title of hours
+    titleMinutes: 'Minutos', // Set the title of minutes
+    titleSeconds: 'Segundos' // Set the title of seconds
+    });
 	$('.selectyze').Selectyze({
 		theme:'beta', effectOpen:'fade', effectClose:'fade'
 	});
@@ -294,7 +304,7 @@ function voto_valorar()
 	});
 }
 
-function evaluar_items()
+/**function evaluar_items()
 {
   var idp = {{ $publicacion->id }};
   var ids_descriptores=new Array(); //array
@@ -317,7 +327,36 @@ function evaluar_items()
  alert(ids_descriptores[count2]+' :: '+puntajes[count2]);}**/
 
 }
+**/
 
+unction evaluar_items()
+{
+  var idp = {{ $publicacion->id }};
+  var ids_descriptores=new Array(); //array
+  var puntajes = new Array(); //array
+  var count=0;
+	var count2;
+  $( ".item_descriptor span" ).each(function()
+   {
+   if($(this).attr('class')=="valoracion3"){
+       ids_descriptores.push($(this).attr('id'));
+   }
+   if($(this).attr('class')=="valor"){
+     puntajes.push($(this).text());
+   }
+   count++;
+ });
+var descript = JSON.stringify(ids_descriptores);
+var puntajes_desc = JSON.stringify(puntajes);
+ $.post( "/evaluar_items", {publicacion:idp,descriptores:descript,puntajes:puntajes_desc}, function( data ) {
+
+	 alert(data);
+	 location.reload();
+ });
+ /**for(count2=0;count2<ids_descriptores.length;count2++){
+ alert(ids_descriptores[count2]+' :: '+puntajes[count2]);}**/
+
+}
 
 
 

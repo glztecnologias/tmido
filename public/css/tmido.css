@@ -1312,3 +1312,27 @@ padding: 4px 4px 4px 4px;
 .boton_val_general:hover {
     background-color: #099;
 }
+.promedio_graf{
+font-size: 45px;
+}
+.descriptor_graf{
+	font-size: 13px;
+	font-weight: bold;
+
+}
+.item_descriptor_ev{
+	width: 130px;
+float: left;
+height: 100px;
+	text-align: center;
+}
+.cont_des_graf{
+
+}
+.estrellitas_graf{
+
+}
+
+.item_descriptor{
+
+}

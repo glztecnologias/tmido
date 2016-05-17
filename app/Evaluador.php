@@ -9,7 +9,7 @@ class Evaluador extends Model
     //
     protected $table = 'evaluador';
     public $timestamps = false;
-    
+
     public function cuenta_usuario() //relacion con cuenta de usuario
     {
         return $this->belongsTo('App\Cuenta_usuario');

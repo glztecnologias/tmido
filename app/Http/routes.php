@@ -88,4 +88,7 @@ Route::get('/evaluacion/{id_publicacion}','PublicoController@show_evaluacion_pub
 
 Route::get('/evaluacion/{id_publicacion}/competencia/{id_competencia}','PublicoController@show_evaluacion_competencia');
 
+Route::get('/graficos/{id_publicacion}/competencia/{id_competencia?}','PublicoController@show_graficos_publicacion');
+
+
 // ********************************************************************

@@ -10,6 +10,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Cuenta_usuario as Cuenta_usuario;
 use App\Random_code as Random_code;
+use App\Evaluador as Evaluador;
 class IngresoController extends Controller
 {
  public function postLogin(Request $request)
@@ -75,6 +76,13 @@ class IngresoController extends Controller
     $usuario = Cuenta_usuario::where('email',$request->email)->first();
     $codigo->cuenta_usuario_id = $usuario->id;
     $codigo->save();
+
+    $evaluador = new Evaluador;
+    $evaluador->cuenta_usuario_id = $usuario->id;
+    $evaluador->tipo_evaluador_id = 1;
+    $evaluador->save();
+
+
     /**$data = ["mensaje" => "Hola Mundo"];
     Mail::send('email.welcome', $data, function ($message) {
         $message->from('agc005@gmail.com', 'T-mido');

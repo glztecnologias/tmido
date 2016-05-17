@@ -13,6 +13,7 @@ use App\Comentario as Comentario;
 use App\Evaluacion as Evaluacion;
 use App\Tipo_evaluacion as Tipo_evaluacion;
 use App\Descriptor_evaluacion as Descriptor_evaluacion;
+use App\Item_evaluacion as Item_evaluacion;
 
 class PublicoController extends Controller
 {
@@ -37,19 +38,23 @@ class PublicoController extends Controller
       $otras_pub_categoria = Publicacion::tomar_misma_categoria($publicacion->categoria_id,$id);
       $valoracion_pub = Valoracion::select_val_publicacion($id);
       $comentarios = Comentario::select_comentarios($id);
+
     //  return $comentarios;
     if( $publicacion->competencia_id == null)
     {
       $competidores = null;
+      $evaluacion = Evaluacion::where('publicaciones_id',$id)->first();
     }
     else
     {
       $competidores = Publicacion::tomar_misma_competencia($publicacion->competencia_id);
+      $id_compe=$publicacion->competencia_id;
+      $evaluacion = Evaluacion::where('competencia_id',$id_compe)->first();
     }
 
     if($publicacion->estado->nombre=="activo")
     {
-       return view('ficha.index', compact('publicacion','categorias','competidores','otras_pub_categoria','valoracion_pub','comentarios'));
+       return view('ficha.index', compact('evaluacion','publicacion','categorias','competidores','otras_pub_categoria','valoracion_pub','comentarios'));
     }
     else
     {
@@ -277,14 +282,72 @@ $descriptores = Descriptor_evaluacion::where('evaluaciones_id',$ideva)->get();
 return view('evaluacion.index',compact('evaluacion','descriptores','publicacion'));
 }
 
+
 public function show_evaluacion_competencia($id_publ,$id_com)
 {
 $publicacion=Publicacion::where('id',$id_publ)->first();
 $evaluacion = Evaluacion::where('competencia_id',$id_com)->first();
 $ideva=$evaluacion->id;
 $descriptores = Descriptor_evaluacion::where('evaluaciones_id',$ideva)->get();
-return view('evaluacion.index',compact('evaluacion','descriptores','publicacion'));
+
+$promedios = array();
+foreach($descriptores as $des)
+{
+     $id_descriptor = $des->id;
+     $suma = Item_evaluacion::where('publicaciones_id',$id_publ)->where('descriptor_evaluacion_id',$id_descriptor)->sum('puntaje');
+     $cantidad = Item_evaluacion::where('publicaciones_id',$id_publ)->where('descriptor_evaluacion_id',$id_descriptor)->count();
+if($cantidad==0){
+  $prom = 0;
+}else{
+  $prom = $suma/$cantidad;
 }
+
+
+     array_push($promedios, $prom);
+}
+
+return view('evaluacion.index',compact('evaluacion','descriptores','publicacion','promedios'));
+}
+
+public function show_graficos_publicacion($id_publ,$id_com = null)
+{
+  if($id_com == null)
+  {
+    $publicacion=Publicacion::where('id',$id_publ)->first();
+    $evaluacion = Evaluacion::where('publicaciones_id',$id_publ)->first();
+    $ideva=$evaluacion->id;
+  }
+  else
+  {
+    $publicacion=Publicacion::where('id',$id_publ)->first();
+    $evaluacion = Evaluacion::where('competencia_id',$id_com)->first();
+    $ideva=$evaluacion->id;
+  }
+
+  $descriptores = Descriptor_evaluacion::where('evaluaciones_id',$ideva)->get();
+  $promedios = array();
+  foreach($descriptores as $des)
+  {
+       $id_descriptor = $des->id;
+       $suma = Item_evaluacion::where('publicaciones_id',$id_publ)->where('descriptor_evaluacion_id',$id_descriptor)->sum('puntaje');
+       $cantidad = Item_evaluacion::where('publicaciones_id',$id_publ)->where('descriptor_evaluacion_id',$id_descriptor)->count();
+
+       if($cantidad==0){
+         $prom = 0;
+       }else{
+         $prom = $suma/$cantidad;
+       }
+
+       array_push($promedios, $prom);
+  }
+
+  return view('evaluacion.graficos',compact('evaluacion','descriptores','publicacion','promedios'));
+
+}
+
+
+
+/****************************************************************************************/
 
 public function evaluar_items(Request $request)
 {
@@ -293,20 +356,23 @@ public function evaluar_items(Request $request)
 //descriptores  array de id de descriptores.
 //puntajes array de puntajes de descriptores.
 
-
   $usuario = session('usuario');
   $request->session()->put('usuario', $usuario);
 
+//  publicacion:idp,descriptores:ids_descriptores,puntajes:puntajes
+
   if($usuario)
   {
-      $check_valoracion = Valoracion::comprobar_valoracion($request->idp,$usuario->id);
+      $check_valoracion = Item_evaluacion::comprobar_evaluacion($request->publicacion,$usuario->id);
       if($check_valoracion)
       {
          return "Lo sentimos, ya haz valorado esta publicacion!...";
       }
       else
       {
-        Valoracion::inserta_valoracion($request->idp,$usuario->id,$request->val);
+
+
+        Item_evaluacion::inserta_evaluacion($request->publicacion,$request->descriptores,$request->puntajes,$usuario->id);
         return "Gracias por tu voto!";
       }
     }
@@ -314,6 +380,8 @@ public function evaluar_items(Request $request)
   {
     return "Debes acceder como usuario para votar!...";
   }
+
+/****************************************************************************************/
 
 
 

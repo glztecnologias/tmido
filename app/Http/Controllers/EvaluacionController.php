@@ -63,6 +63,8 @@ class EvaluacionController extends Controller
         $evaluacion->nombre = $request->input('nombre');
         $evaluacion->descripcion = $request->input('descripcion');
         $evaluacion->instrucciones = $request->input('instrucciones');
+        $evaluacion->f_termino = $request->input('f_termino');
+        
         $publicacion=$request->input('publicaciones_id');
         $competencia=$request->input('competencia_id');
 

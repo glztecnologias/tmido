@@ -15,7 +15,7 @@ class CreateEvaluadorTable extends Migration
         Schema::create('evaluador', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('cuenta_usuario_id')->unsigned();
-            $table->integer('tipo_evaluador_id∫')->unsigned();
+            $table->integer('tipo_evaluador_id')->unsigned();
             $table->timestamps();
         });
     }

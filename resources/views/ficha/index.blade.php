@@ -38,11 +38,14 @@
       <h2><i class="fa fa-star tituloStar"></i>Publicaciones / {{ $publicacion->categoria->nombre }}</h2>
 @if($publicacion->competencia_id == null)
 <h1>{{ $publicacion->titulo }}</h1>
+
+
 @else
 <h1>
   {{ $publicacion->competencia->sufijo_titulo }}:
 <span class="rojo">{{ $publicacion->titulo }}</span>
 </h1>
+
 @endif
 
 
@@ -64,14 +67,16 @@
             <a href="#" class="botonFicha number3">Audio</a>
             <a href="#" class="botonFicha number4">Video</a>
           </section>
-          <p class="fichaTime"><span>QUEDAN:</span><br>
-            10 días y 5 horas para terminar evaluación</p>
+          <p class="fichaTime"><span>Cierre de Evaluacion en:</span><br>
+            <span class="regresiva"></span>
+          </p>
+
 @if($publicacion->competencia_id == null)
 
-<a href="/evaluacion/{{ $publicacion->id }}" class="fichaEvalua tooltip" title="">Evalua tú también</a>
+<a href="/evaluacion/{{ $publicacion->id }}" class="fichaEvalua" title="Evalua a {{ $publicacion->titulo }}!">Evalua tú también</a>
 
 @else
-<a href="/evaluacion/{{ $publicacion->id }}/competencia/{{ $publicacion->competencia->id }}" class="fichaEvalua tooltip" title="">Evalua tú también</a>
+<a href="/evaluacion/{{ $publicacion->id }}/competencia/{{ $publicacion->competencia->id }}" class="fichaEvalua tooltip" title="Evalua a {{ $publicacion->titulo }}!">Evalua tú también</a>
 
 @endif
 
@@ -199,7 +204,18 @@
 
           </div>
         </section>
-        <a href="/tmido/graficos.php" class="verGraficos tooltip" title="<span class='tituloPDF'>Política:</span> Discurso de la Presidenta el 21 de mayo">Ver todos los gráficos comparativos</a> </div>
+
+        @if($publicacion->competencia_id == null)
+        <a href="/graficos/{{$publicacion->id}}" class="verGraficos tooltip" title="ver graficos evaluaciones">Ver Gráficos & Puntajes de Evaluaciones</a> </div>
+        @else
+        <a href="/graficos/{{$publicacion->id}}/competencia/{{ $publicacion->competencia->id }}" class="verGraficos tooltip" title="ver graficos evaluaciones">Ver Gráficos & Puntajes de Evaluaciones</a> </div>
+
+        @endif
+
+
+
+
+
     </div>
     <div id="fichaRight">
       <h2>Más mediciones<br>

@@ -10,18 +10,29 @@
 <h2>Items de evaluacion:</h2>
 <br>
 <div id="descriptores">
-@forelse($descriptores as $des)
-    <div class="item_descriptor">
-     <span >{{ $des->descripcion }}</span> ::
-     <span  id="{{ $des->id }}" class="valoracion3"></span> ::
-     <span id="{{ $des->id }}_r" class="valor" ></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-     <span id=""> X : 6.5 </span>
-   </div>
-<br><br>
-@empty
-    <li>No existe!</li>
+<?php
+$cont = 0;
+if($descriptores){foreach($descriptores as $des){
 
-@endforelse
+?>
+  <div class="item_descriptor">
+   <span ><?php echo $des->descripcion; ?></span> ::
+   <span  id="<?php echo $des->id; ?>" class="valoracion3"></span> ::
+   <span id="<?php echo $des->id; ?>_r" class="valor" ></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   <span id=""> PROMEDIO &nbsp;&nbsp;<strong><?php echo $promedios[$cont]; ?></strong> </span>
+  </div>
+  <br><br>
+
+<?php $cont++;} }else{ ?>
+
+<li>No existe!</li>
+
+<?php } ?>
+
+
+
+
+
 </div>
 
 <br><br>

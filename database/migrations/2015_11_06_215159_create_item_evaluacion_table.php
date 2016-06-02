@@ -14,11 +14,13 @@ class CreateItemEvaluacionTable extends Migration
     {
         Schema::create('item_evaluacion', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('puntaje');
-            $table->string('opcion', 100);
-            $table->mediumText('respuesta_desarrollo');
+            $table->integer('puntaje')->nullable(); //evaluacion de valoracion
+            $table->string('si_no', 2)->nullable(); //si o no
+            $table->string('mg_nomg', 4)->nullable(); //mg o nomg
+            $table->integer('voto')->nullable(); // solo 1;
+            $table->mediumText('respuesta_desarrollo')->nullable(); //respuesta_desarrollo
             $table->dateTime('f_creacion');
-            $table->integer('descriptor_evaluacion_id')->unsigned();
+            $table->integer('descriptor_evaluacion_id')->unsigned()->nullable();
             $table->integer('evaluador_id')->unsigned();
 
             $table->integer('publicaciones_id')->unsigned()->nullable();

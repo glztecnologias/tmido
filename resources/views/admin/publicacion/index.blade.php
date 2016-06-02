@@ -3,6 +3,27 @@
 @section('titulo','Lista de publicaciones')
 @section('contenido_admin')
 
+<div class="ui error message">
+  <i class="close icon"></i>
+
+<?php
+if (isset($mensaje)){
+  echo $mensaje;
+}
+?>
+
+</div>
+<script>
+$('.message .close')
+  .on('click', function() {
+    $(this)
+      .closest('.message')
+      .transition('fade')
+    ;
+  })
+;
+</script>
+
           <a  class="ui green button" href="/admin/publicaciones/create" style="float:right"><i class="add circle icon"></i> Crear Nueva</a>
           <br>
           <h4 class="ui horizontal divider header">

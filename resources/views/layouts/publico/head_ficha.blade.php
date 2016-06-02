@@ -5,8 +5,7 @@
 	<meta property="og:description"   content="{{ $publicacion->descripcion_corta }}" />
 	<meta property="og:image"         content="http://www.t-mido.cl{{ $publicacion->url_foto }}" />
 
-	<link rel="canonical" href="http://www.t-mido.cl/publicaciones/{{ $publicacion->id }}" />
-
+<link rel="canonical" href="http://www.t-mido.cl/publicaciones/{{ $publicacion->id }}" />
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/themes/redmond/jquery-ui.css"/>
 <link href="/css/tmido.css" rel="stylesheet" type="text/css">
 <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -23,21 +22,19 @@
 <script src="/js/jquery.colorbox-min.js"></script>
 <script src="/js/jquery.slimscroll.min.js"></script>
 <script src="/js/jquery.tooltipster.min.js"></script>
-
 <script src="/js/highcharts.js"></script>
 <script src="/js/exporting.js"></script>
 <script src="/js/star_raty/jquery.raty.js"></script>
-
 <script src="/js/jquery.timeago.js" type="text/javascript"></script>
-
 <script type="text/javascript" src="/js/dscountdown.js"></script>
 <link rel="stylesheet" href="/css/dscountdown.css" type="text/css" />
-
 <script type="text/javascript" src="/js/jeoquery.js"></script>
 
 <script type="text/javascript">
+//READY INICIAL
 $(document).ready(function() {
 
+@if(isset($evaluacion))
   $('.regresiva').dsCountDown({
     startDate: new Date("<?php echo date('F d, Y h:i:s'); ?>"), // this value is picked up by PHP script &lt;?php echo date('F d, Y h:i:s'); ?&gt;
     endDate: new Date("<?php $date = new DateTime($evaluacion->f_termino);echo date_format($date,'F d, Y h:i:s'); ?>"),
@@ -45,237 +42,226 @@ $(document).ready(function() {
     titleHours: 'Horas', // Set the title of hours
     titleMinutes: 'Minutos', // Set the title of minutes
     titleSeconds: 'Segundos' // Set the title of seconds
-    });
-	$('.selectyze').Selectyze({
-		theme:'beta', effectOpen:'fade', effectClose:'fade'
-	});
-
-	/** file Input
-	$('.comentarioFile').jfilestyle({
-		inputSize: '191px',
-		buttonText: 'Adjuntar Archivo'
-	});  **/
-
-	//tooltip
-	$('.tooltip').tooltipster({
-		position: 'right',
-		contentAsHTML: true
-	});
-
-	//botones divs  audio video
-  $('.number2').click(function(noLink) {
-    noLink.preventDefault();
-    //$('#video-container').addClass('hide');
-    //$('#audio-container').removeClass();
-    var cont='<iframe style="" src="http://docs.google.com/viewer?url=http://www.gorevalparaiso.gob.cl/archivos/archivoDocumento/GORE_ARI_Genero_2016.ppt&amp;embedded=true" width="474" height="298"></iframe>';
-    $('#mediaContenedor').html(cont);
-
   });
-	$('.number3').click(function(noLink) {
-		noLink.preventDefault();
-		//$('#video-container').addClass('hide');
-		//$('#audio-container').removeClass();
-    var audio= '<div id="audio-container"><audio controls preload="auto"><source src="http://www.teohilfe.cl/clientes/tmido/descargas/demo.ogg" type="audio/ogg">';
-        audio+='<source src="http://www.teohilfe.cl/clientes/tmido/descargas/audio.mp3" type="audio/mpeg">';
-        audio+='<p>Tú navegador no soporta el audio de HTML5, actualizalo por favor.</p></audio></div>';
+@endif
 
-    $('#mediaContenedor').html(audio);
+    $('.selectyze').Selectyze({
+  		theme:'beta', effectOpen:'fade', effectClose:'fade'
+  	});
 
-	});
-	$('.number4').click(function(noLink) {
-		noLink.preventDefault();
-		//$('#audio-container').addClass('hide');
-		//$('#video-container').removeClass();
-    $('#mediaContenedor').html('<iframe width="480" height="293" src="https://www.youtube.com/embed/P5_Msrdg3Hk" frameborder="0" allowfullscreen></iframe>');
+    $('.tooltip').tooltipster({
+      position: 'right',
+      contentAsHTML: true
+    });
 
-	});
+    //botones divs  audio video
+    $('.number2').click(function(noLink) {
+      noLink.preventDefault();
+      //$('#video-container').addClass('hide');
+      //$('#audio-container').removeClass();
+      var cont='<iframe style="" src="http://docs.google.com/viewer?url=http://www.gorevalparaiso.gob.cl/archivos/archivoDocumento/GORE_ARI_Genero_2016.ppt&amp;embedded=true" width="474" height="298"></iframe>';
+      $('#mediaContenedor').html(cont);
+    });
 
-	// colorbox
-	$('.verPDF').colorbox({
-		width:928,
-		height:556,
-		scalePhotos: false
-	});
+    $('.number3').click(function(noLink) {
+  		noLink.preventDefault();
+  		//$('#video-container').addClass('hide');
+  		//$('#audio-container').removeClass();
+      var audio= '<div id="audio-container"><audio controls preload="auto"><source src="http://www.teohilfe.cl/clientes/tmido/descargas/demo.ogg" type="audio/ogg">';
+          audio+='<source src="http://www.teohilfe.cl/clientes/tmido/descargas/audio.mp3" type="audio/mpeg">';
+          audio+='<p>Tú navegador no soporta el audio de HTML5, actualizalo por favor.</p></audio></div>';
 
-	$('.fichaEvalua').colorbox({
-		width:650,
-		height:510,
-		scalePhotos: false,
-		onComplete: function() {
-			$('#cboxLoadedContent').slimScroll({
-					color: '#32A19B',
-					height: '380px',
-					distance: '0px'
-				});
-        $('.valoracion3').raty({
-          number: 7,
-          score: 1,
-         starHalf   : 'star-half-big.png',
+      $('#mediaContenedor').html(audio);
+
+  	});
+
+  	$('.number4').click(function(noLink) {
+  		noLink.preventDefault();
+  		//$('#audio-container').addClass('hide');
+  		//$('#video-container').removeClass();
+      $('#mediaContenedor').html('<iframe width="480" height="293" src="https://www.youtube.com/embed/P5_Msrdg3Hk" frameborder="0" allowfullscreen></iframe>');
+
+  	});
+
+    // colorbox
+    $('.verPDF').colorbox({
+      width:928,
+      height:556,
+      scalePhotos: false
+    });
+
+    $('.fichaEvalua').colorbox({
+      width:650,
+      height:510,
+      scalePhotos: false,
+      onComplete: function() {
+        $('#cboxLoadedContent').slimScroll({
+            color: '#32A19B',
+            height: '380px',
+            distance: '0px'
+          });
+          $('.valoracion3').raty({
+            number: 7,
+            score: 1,
+           starHalf   : 'star-half-big.png',
+           starOff    : 'star-off-big.png',
+           starOn     : 'star-on-big.png',
+           path: '/imag/',
+           hints: ['','','','','','',''],
+            click: function(score, evt) {
+            var id= $(this).attr('id')+"_r";
+            $('#'+id).html(score);
+              }
+
+          });
+
+
+        }
+    });
+
+    $('.verGraficos').colorbox({
+      width:928,
+      height:506,
+      scalePhotos: false,
+      onComplete: function() {
+        $('#cboxLoadedContent').slimScroll({
+            color: '#32A19B',
+            size:'20px',
+            height: '472px',
+            distance: '0px'
+          });
+        }
+    });
+
+    /**GRAFICO DONUT***/
+    $('#graf1_ficha').highcharts({
+    	exporting: { enabled: false },
+                chart: {
+    								backgroundColor: "#F0F0F0",
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+
+                },
+                title: {
+                    text: 'me gusta / no me gusta',
+    								style:{'font-size':'15px','font-weight':'bold','color':'#D42D2C'},
+
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+    										marginTop: -50,
+                        dataLabels: {
+                            enabled: false
+                        },
+                        showInLegend: true
+                    }
+                },
+                series: [{
+                    name: 'Votacion',
+                    colorByPoint: true,
+                    data: [
+    								{
+                        name: 'Me Gusta',
+    										color:'#099',
+                        y: {{ $publicacion->megusta }}
+                    },
+    								{
+                        name: 'No Me Gusta',
+    										color:'#D42D2C',
+                        y: {{ $publicacion->nomegusta }},
+                        sliced: true,
+                        selected: true
+                    }]
+                }]
+            });
+    /*****************/
+    $('.valoracion').raty({
+    	number: 7,
+      half: true,
+    	readOnly: true,
+    	score: {{$valoracion_pub}},
+    	cancel : true,
+     target: '#n_valoracion',
+     targetScore: '#n_valoracion',
+     targetType : 'number',
+     targetKeep   : true,
+     path: '/imag/',
+     hints: ['','','','','','','']
+
+    });
+
+    $('.boton_val_general').colorbox({
+    	width:400,
+    	height:100,
+    	scalePhotos: false,
+
+    	html:'<div>Mueve y Haz Click para valorar!</div><div><span class="valoracion2" ></span>&nbsp;&nbsp;&nbsp;&nbsp;<span id="n_valoracion2" class="n_val_estrella2"></span>&nbsp;&nbsp;<span><a class="boton_val_general" href="javascript:voto_valorar()">Enviar Valoracion!</a></span></div>',
+    	onComplete: function(){
+    		$('.valoracion2').raty({
+    			number: 7,
+    		  half: true,
+    			precision:0.5,
+    			score: 1,
+    			size       : 24,
+    		 target: '#n_valoracion2',
+    		 targetType : 'number',
+    		 starHalf   : 'star-half-big.png',
          starOff    : 'star-off-big.png',
          starOn     : 'star-on-big.png',
-         path: '/imag/',
-         hints: ['','','','','','',''],
-          click: function(score, evt) {
-          var id= $(this).attr('id')+"_r";
-          $('#'+id).html(score);
-            }
+    		 targetKeep   : true,
+    		 path: '/imag/',
+    		 hints: ['','','','','','','']
 
-        });
-
-
-      }
-	});
-
-	$('.verGraficos').colorbox({
-		width:928,
-		height:506,
-		scalePhotos: false,
-		onComplete: function() {
-			$('#cboxLoadedContent').slimScroll({
-					color: '#32A19B',
-					size:'20px',
-					height: '472px',
-					distance: '0px'
-				});
-			}
-	});
+    		});
+    	},
+    });
 
 
-/**GRAFICO DONUT***/
-$('#graf1_ficha').highcharts({
-	exporting: { enabled: false },
-            chart: {
-								backgroundColor: "#F0F0F0",
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'pie'
+    $("time.timeago").timeago();
 
-            },
-            title: {
-                text: 'me gusta / no me gusta',
-								style:{'font-size':'15px','font-weight':'bold','color':'#D42D2C'},
+    var caracteresAMostrar = 200;
+    $(".comentario").each(function(){
+    //Para obtener al contenido de cada elemento basta con la palabra clave ‘this’
+    var contenido = $(this).html();
 
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-										marginTop: -50,
-                    dataLabels: {
-                        enabled: false
-                    },
-                    showInLegend: true
-                }
-            },
-            series: [{
-                name: 'Votacion',
-                colorByPoint: true,
-                data: [
-								{
-                    name: 'Me Gusta',
-										color:'#099',
-                    y: {{ $publicacion->megusta }}
-                },
-								{
-                    name: 'No Me Gusta',
-										color:'#D42D2C',
-                    y: {{ $publicacion->nomegusta }},
-                    sliced: true,
-                    selected: true
-                }]
-            }]
-        });
-/*****************/
-$('.valoracion').raty({
-	number: 7,
-  half: true,
-	readOnly: true,
-	score: {{$valoracion_pub}},
-	cancel : true,
- target: '#n_valoracion',
- targetScore: '#n_valoracion',
- targetType : 'number',
- targetKeep   : true,
- path: '/imag/',
- hints: ['','','','','','','']
+    if (contenido.length > caracteresAMostrar) {
+      var resumen = contenido.substr(0, caracteresAMostrar);
+      var todo = contenido.substr(caracteresAMostrar, contenido.length - caracteresAMostrar);
+    var nuevocontenido = resumen + '<span class="complete">' + todo + '</span><span class="more">Leer mas...</span>';
+    $(this).html(nuevocontenido);
+    }
 
-});
+    });
 
-
-//***********************************
-
-
-
-
-
-$('.boton_val_general').colorbox({
-	width:400,
-	height:100,
-	scalePhotos: false,
-
-	html:'<div>Mueve y Haz Click para valorar!</div><div><span class="valoracion2" ></span>&nbsp;&nbsp;&nbsp;&nbsp;<span id="n_valoracion2" class="n_val_estrella2"></span>&nbsp;&nbsp;<span><a class="boton_val_general" href="javascript:voto_valorar()">Enviar Valoracion!</a></span></div>',
-	onComplete: function(){
-		$('.valoracion2').raty({
-			number: 7,
-		  half: true,
-			precision:0.5,
-			score: 1,
-			size       : 24,
-		 target: '#n_valoracion2',
-		 targetType : 'number',
-		 starHalf   : 'star-half-big.png',
-     starOff    : 'star-off-big.png',
-     starOn     : 'star-on-big.png',
-		 targetKeep   : true,
-		 path: '/imag/',
-		 hints: ['','','','','','','']
-
-		});
-	},
-});
-
-$("time.timeago").timeago();
-
-var caracteresAMostrar = 200;
-$(".comentario").each(function(){
-//Para obtener al contenido de cada elemento basta con la palabra clave ‘this’
-var contenido = $(this).html();
-
-if (contenido.length > caracteresAMostrar) {
-  var resumen = contenido.substr(0, caracteresAMostrar);
-  var todo = contenido.substr(caracteresAMostrar, contenido.length - caracteresAMostrar);
-var nuevocontenido = resumen + '<span class="complete">' + todo + '</span><span class="more">Leer mas...</span>';
-$(this).html(nuevocontenido);
-}
-
+    $(".more").toggle(function() {
+        //$(this).text("Leer menos...").siblings(".complete").show();
+        $(this).text("Leer menos");
+        $(this).prev().css( "display", "block" );
+        $(this).css( "display", "block" );
+    }, function() {
+      //  $(this).text("Leer mas...").siblings(".complete").hide();
+      $(this).text("Leer mas");
+      $(this).prev().css( "display", "none" );
+      $(this).css( "display", "block" );
+    });
 
 
 });
 
-$(".more").toggle(function() {
-    //$(this).text("Leer menos...").siblings(".complete").show();
-    $(this).text("Leer menos");
-    $(this).prev().css( "display", "block" );
-    $(this).css( "display", "block" );
-}, function() {
-  //  $(this).text("Leer mas...").siblings(".complete").hide();
-  $(this).text("Leer mas");
-  $(this).prev().css( "display", "none" );
-  $(this).css( "display", "block" );
-});
+//***************************
 
 
 
 
-});
 
-
-//////////////////////TERMINO READY DOCUMENT/////////////////////////////////
-
+//FUNCIONES
 
 function buscar()
 {
@@ -304,32 +290,7 @@ function voto_valorar()
 	});
 }
 
-/**function evaluar_items()
-{
-  var idp = {{ $publicacion->id }};
-  var ids_descriptores=new Array(); //array
-  var puntajes = new Array(); //array
-  var count=0;
-	var count2;
-  $( ".item_descriptor span" ).each(function()
-   {
-   if($(this).attr('class')=="valoracion3"){
-       ids_descriptores.push($(this).attr('id'));
-   }
-   if($(this).attr('class')=="valor"){
-     puntajes.push($(this).text());
-   }
-   count++;
- });
-
-
- /**for(count2=0;count2<ids_descriptores.length;count2++){
- alert(ids_descriptores[count2]+' :: '+puntajes[count2]);}**/
-
-}
-**/
-
-unction evaluar_items()
+function evaluar_items()
 {
   var idp = {{ $publicacion->id }};
   var ids_descriptores=new Array(); //array
@@ -353,12 +314,8 @@ var puntajes_desc = JSON.stringify(puntajes);
 	 alert(data);
 	 location.reload();
  });
- /**for(count2=0;count2<ids_descriptores.length;count2++){
- alert(ids_descriptores[count2]+' :: '+puntajes[count2]);}**/
 
 }
-
-
 
 function comentar()
 {
@@ -368,6 +325,7 @@ function comentar()
   $.post( "/comentar", {idp:id,com:coment}, function( data ) {
     if(data=="OK")
     {
+@if($publicacion->act_comentarios == 1)
 @if($datos_user)
       var come;
       come='<section>';
@@ -388,7 +346,7 @@ function comentar()
       come+='</section';
       $('.cont_comentarios').prepend(come);
 @endif
-
+@endif
     }
     else
     {
@@ -406,6 +364,9 @@ function voto_gusto_comenta(id,opcion)
 	 	location.reload();
 	});
 }
+
+
+//***************************
 
 
 </script>

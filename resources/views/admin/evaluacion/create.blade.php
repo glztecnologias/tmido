@@ -41,18 +41,36 @@
 
     <div class="field">
       <label>Tipo de Evaluacion</label>
-      <select class="ui fluid dropdown" name="tipo_evaluacion">
+      <select class="ui fluid dropdown" name="tipo_evaluacion" id="tipo_evaluacion" onchange="des_votacion(event);">
         @forelse($tipo_evaluacion as $tipos_eval)
-        <option value="{{$tipos_eval->id}}" >{{$tipos_eval->nombre}} </option>
+        <option value="{{$tipos_eval->id}}" id="{{$tipos_eval->id}}">{{$tipos_eval->clasificacion}}</option>
         @empty
         <option value="NULL">Sin Tipos de Evaluacion Aun</option>
         @endforelse
       </select>
     </div>
+
+    <script>
+    function des_votacion(event)
+    {
+        var seleccionado = $('select[id=tipo_evaluacion]');
+        var id_sel=seleccionado.val();
+
+        if($('#'+id_sel+'').text()=="votacion"){
+          $("#sino_votacion").css("display","none");
+        }
+        else
+        {
+          $("#sino_votacion").css("display","block");
+      }
+    }
+
+    </script>
+
+<span id="sino_votacion">
     <div class="field">
       <label>Cantidad de Items (Descriptor, Pregunta o Aseveracion)</label>
       <select class="ui fluid dropdown" name="cantidad" id="cantidad_items">
-
         <option value="1" >1 </option>
         <option value="2" >2</option>
         <option value="3" >3 </option>
@@ -65,12 +83,10 @@
       <a class="ui green button" href="javascript:agrega_input_items();">Crear / Ingresar Items</a>
     </div>
 
-
-
     <div class="items_eval">
-
-
     </div>
+</span>
+
 <br>
         <div class="ui buttons">
           <button type="submit" class="ui blue button">Guardar</button>

@@ -16,6 +16,8 @@
               <th>Nombre</th>
               <th>Sufijo de Titulo</th>
               <th>Descripcion</th>
+              <th>Tipo</th>
+              <th>Cantidad</th>
               <th style="width: 260px;">Aciones</th>
             </tr></thead>
             <tbody>
@@ -26,6 +28,14 @@
               <td>{{ $competencia->nombre }}</td>
               <td>{{ $competencia->sufijo_titulo }}</td>
               <td>{{ $competencia->descripcion }}</td>
+              <td>{{ $competencia->tipo }}</td>
+               @if($competencia->cant_participa==null)
+               <td>Indeterminado</td>
+               @else
+               <td>{{ $competencia->cant_participa }}</td>
+               @endif
+
+
               <td>
                 <form action="/admin/competencias/{{ $competencia->id }}" method="post">
                     <input type="hidden" name="_method" value="delete">

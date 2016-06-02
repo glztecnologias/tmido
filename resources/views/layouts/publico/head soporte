@@ -1,0 +1,55 @@
+/**Head script
+
+
+
+
+  /**$('.regresiva').dsCountDown({
+    startDate: new Date("<?php echo date('F d, Y h:i:s'); ?>"), // this value is picked up by PHP script &lt;?php echo date('F d, Y h:i:s'); ?&gt;
+    endDate: new Date("<?php $date = new DateTime($evaluacion->f_termino);echo date_format($date,'F d, Y h:i:s'); ?>"),
+    titleDays: 'Dias', // Set the title of days
+    titleHours: 'Horas', // Set the title of hours
+    titleMinutes: 'Minutos', // Set the title of minutes
+    titleSeconds: 'Segundos' // Set the title of seconds
+  });**/
+
+
+
+
+
+	//tooltip
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//***********************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+});
+
+
+//////////////////////TERMINO READY DOCUMENT/////////////////////////////////

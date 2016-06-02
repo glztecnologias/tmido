@@ -1,8 +1,9 @@
 <head>
   <meta charset="utf-8">
   <title> @yield('titulo') | Administracion T-Mido</title>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="/js/jquery.datetimepicker.full.min.js"></script>
-  <script src="/js/jquery-1.11.3.min.js"></script>
+
   <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.7/semantic.min.css" rel="stylesheet" type="text/css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.7/semantic.min.js"></script>
 <link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/ >
@@ -17,6 +18,8 @@ $(".menu a").each(function (index)
 
 $('#'+seccion).addClass('active');
 **/
+$('.ui.checkbox').checkbox();
+
 });
 
 function agrega_input_items(){
@@ -29,6 +32,7 @@ function agrega_input_items(){
     i++;
   }
 }
+
   </script>
 
 </head>

@@ -298,6 +298,7 @@ function comentar()
   $.post( "/comentar", {idp:id,com:coment}, function( data ) {
 		if(data=="OK")
     {
+@if($publicacion->act_comentarios == 1)
 @if($datos_user)
       var come;
       come='<section>';
@@ -317,7 +318,7 @@ function comentar()
       come+='</section';
       $('.cont_comentarios').prepend(come);
 @endif
-
+@endif
     }
     else
     {

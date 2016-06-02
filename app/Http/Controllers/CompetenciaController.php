@@ -31,6 +31,14 @@ return view('admin.competencia.index', compact('competencias'));
     $competencia->nombre = $request->input('nombre');
     $competencia->sufijo_titulo = $request->input('sufijo');
     $competencia->descripcion = $request->input('descripcion');
+    $competencia->tipo = $request->input('tipo');
+    if($request->input('tipo')=="normal"){
+        $competencia->cant_participa = $request->input('cant_participa');
+    }
+    if($request->input('tipo')=="masiva"){
+        $competencia->cant_participa = null;
+    }
+
     $competencia->save();
     return redirect('/admin/competencias');
   }
@@ -57,6 +65,8 @@ return view('admin.competencia.index', compact('competencias'));
     $competencia->nombre = $request->input('nombre');
     $competencia->sufijo_titulo = $request->input('sufijo');
     $competencia->descripcion = $request->input('descripcion');
+    $competencia->tipo = $request->input('tipo');
+    $competencia->cant_participa = $request->input('cant_participa');
     $competencia->save();
    return redirect('/admin/competencias');
 

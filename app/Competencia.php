@@ -9,4 +9,9 @@ class Competencia extends Model
     //
     protected $table = 'competencia';
     public $timestamps = false;
+
+    public function evaluacion() //relacion con tipo de evaluacion
+    {
+        return $this->hasOne('App\Evaluacion','competencia_id');
+    }
 }

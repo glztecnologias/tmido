@@ -117,6 +117,19 @@ class PublicoController extends Controller
 
     }
 
+    public function guarda_datos_cuenta(Request $request) //Validar
+    {
+      $categorias = Categoria::All();
+      $usuarios_ranking = Cuenta_usuario::tomar_tres_ranking_participacion();
+
+      $usuario = session('usuario');  //Validar USUARIO ****
+      $request->session()->put('usuario', $usuario); //Validar USUARIO ****
+
+      return view('cuenta.index', compact('categorias','usuarios_ranking'));
+
+    }
+
+
     public function votar_megusta(Request $request)
     {
     $usuario = session('usuario');
@@ -279,7 +292,26 @@ $publicacion=Publicacion::where('id',$id_publ)->first();
 $evaluacion = Evaluacion::where('publicaciones_id',$id_publ)->first();
 $ideva=$evaluacion->id;
 $descriptores = Descriptor_evaluacion::where('evaluaciones_id',$ideva)->get();
-return view('evaluacion.index',compact('evaluacion','descriptores','publicacion'));
+$promedios = array();
+foreach($descriptores as $des)
+{
+     $id_descriptor = $des->id;
+     $suma = Item_evaluacion::where('publicaciones_id',$id_publ)->where('descriptor_evaluacion_id',$id_descriptor)->sum('puntaje');
+     $cantidad = Item_evaluacion::where('publicaciones_id',$id_publ)->where('descriptor_evaluacion_id',$id_descriptor)->count();
+if($cantidad==0){
+  $prom = 0;
+}else{
+  $prom = $suma/$cantidad;
+}
+
+
+     array_push($promedios, $prom);
+}
+
+
+
+
+return view('evaluacion.index',compact('evaluacion','descriptores','publicacion','promedios'));
 }
 
 
@@ -386,6 +418,15 @@ public function evaluar_items(Request $request)
 
 
 }
+
+public function muestra_competencia_categoria($cat)
+{
+  $categorias = Categoria::All();
+  return view('competencia.index', compact('categorias'));
+
+}
+
+
 
 
 }

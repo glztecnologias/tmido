@@ -17,7 +17,8 @@ class CreateCompetenciaTable extends Migration
             $table->string('nombre', 200);
             $table->string('sufijo_titulo', 45);
             $table->string('descripcion', 500);
-            $table->timestamps();
+            $table->string('tipo', 10);
+            $table->integer('cant_participa')->unsigned()->nullable(); 
             $table->index(['nombre']);
 
         });

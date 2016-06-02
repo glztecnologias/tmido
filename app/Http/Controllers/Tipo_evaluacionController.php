@@ -43,8 +43,9 @@ class Tipo_evaluacionController extends Controller
     {
         //
         $tipo_evaluacion = new Tipo_evaluacion;
-        $tipo_evaluacion->nombre = $request->input('nombre');
+
         $tipo_evaluacion->descripcion = $request->input('descripcion');
+        $tipo_evaluacion->clasificacion = $request->input('clasificacion');
         $tipo_evaluacion->save();
         return redirect('/admin/tipo_evaluacion');
     }

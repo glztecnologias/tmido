@@ -64,7 +64,6 @@ class EvaluacionController extends Controller
         $evaluacion->descripcion = $request->input('descripcion');
         $evaluacion->instrucciones = $request->input('instrucciones');
         $evaluacion->f_termino = $request->input('f_termino');
-        
         $publicacion=$request->input('publicaciones_id');
         $competencia=$request->input('competencia_id');
 
@@ -80,26 +79,41 @@ class EvaluacionController extends Controller
           $evaluacion->publicaciones_id = null;
         }
 
-
         $evaluacion->tipo_evaluacion_id = $request->input('tipo_evaluacion');
         $evaluacion->save();
 
-        $eva = Evaluacion::where('publicaciones_id',$evaluacion->publicaciones_id)->first();
-        $id_eval=$eva->id;
-
-        $cantidad_items = $request->input('cantidad');
-        $i=1;
-        while($i<=$cantidad_items)
+        if(isset($publicacion))
         {
-          $descriptor = new Descriptor_evaluacion;
-
-          //$descriptor->nombre = $request->input('item_'.$i);
-          $descriptor->descripcion = $request->input('item_'.$i);
-          $descriptor->pregunta = $request->input('item_'.$i);
-          $descriptor->evaluaciones_id = $id_eval;
-          $descriptor->save();
-          $i++;
+          $eva = Evaluacion::where('publicaciones_id',$evaluacion->publicaciones_id)->first();
+          $id_eval=$eva->id;
         }
+        if(isset($competencia))
+        {
+          $eva = Evaluacion::where('competencia_id',$evaluacion->competencia_id)->first();
+          $id_eval=$eva->id;
+        }
+
+        $id_tipo_eval=$request->input('tipo_evaluacion');
+        $tipo_evaluacion = Tipo_evaluacion::where('id',  $id_tipo_eval)->first();
+        $clas_tipo_evaluacion =  $tipo_evaluacion->clasificacion;
+
+        if($clas_tipo_evaluacion!="votacion")
+        {
+            $cantidad_items = $request->input('cantidad');
+            $i=1;
+            while($i<=$cantidad_items)
+            {
+              $descriptor = new Descriptor_evaluacion;
+
+              //$descriptor->nombre = $request->input('item_'.$i);
+              $descriptor->descripcion = $request->input('item_'.$i);
+              $descriptor->pregunta = $request->input('item_'.$i);
+              $descriptor->evaluaciones_id = $id_eval;
+              $descriptor->save();
+              $i++;
+            }
+        }
+
 
         if(isset($publicacion))
         {

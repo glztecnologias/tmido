@@ -7,6 +7,27 @@
 	margin:0px;
 	padding:0px;
 }
+
+.ficha_competencia{
+	width: 640px;
+	margin-bottom: 10px;
+	float: left;
+}
+.ficha_competidor_{
+	width:118px;
+	height:150px;
+	border:1px solid black;
+
+	float: left;
+	margin-right: 8px;
+	margin-top: 8px;
+
+}
+.foto_competidor{}
+.pje_competidor{}
+.boton_accion_competidor{}
+
+
 html {
 	height:100%;
 }
@@ -665,6 +686,7 @@ legend {
 	height:auto;
 	margin:0 0 0 46px;
 	float:left;
+	margin-bottom: 10px;
 }
 #fichaComentarios section {
 	width:481px;

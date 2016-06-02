@@ -44,17 +44,17 @@
       City/State<select name="city_state" size="1" disabled="disabled" onchange="print_city_state(country,this)">
       </select>
 <input class="input-large input_datos" id="city" type="text"/>
-    -->
+
 
       <label class="label_datos">Pais</label>
       <select id="country" class="country_input" disabled="disabled"></select><br>
 
       <label class="label_datos">Region</label>
-      <select id="" class="country_input" disabled="disabled"></select><br>
+      <select id="region" class="country_input" disabled="disabled"></select><br>
 
       <label class="label_datos">Ciudad</label>
       <select id="" class="country_input" disabled="disabled"></select><br>
-
+  -->
       <label class="label_datos">Fecha de Nacimiento</label>
       <input class="input_datos" name="f_nac" type="text" value="{{ $datos_user->f_nac }}"/><br>
       <label class="label_datos">sexo</label>

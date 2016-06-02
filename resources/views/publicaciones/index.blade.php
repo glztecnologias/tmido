@@ -18,7 +18,10 @@
           </section>
              <p class="fichaVisitas">{{ $publicacion->contador }} Visitas
     				<span class="fichaCategoria">{{ $publicacion->categoria->nombre }}</span>
-    				 </p>
+            @if(isset($publicacion->competencia->nombre))
+            <span class="fichaCategoria">{{ $publicacion->competencia->nombre }}</span>
+            @endif
+             </p>
              <a href="/publicaciones/{{ $publicacion->id }}" class="fichaOpina tooltip" title="¡Opina tú también!">¡Opina tú también!</a>
        </div>
     @endif

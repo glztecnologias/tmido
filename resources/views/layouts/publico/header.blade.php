@@ -12,7 +12,15 @@
 | <a href="/ingreso/logout" id="txt_logout" title="Cerrar Sesion">  Salir <i class="fa fa-sign-out"></i></a>
 
 </div>
-<span><img src="{{ $datos_user->url_foto }}"  class="comentarioUsuario" width="40" height="40" style="float: right;"></span>
+<span>
+  @if($datos_user->url_foto == "" || $datos_user->url_foto == null)
+    <img src="/imag/user.png"  class="comentarioUsuario" width="40" height="40" style="float: right;">
+
+  @else
+<img src="{{ $datos_user->url_foto }}"  class="comentarioUsuario" width="40" height="40" style="float: right;">
+  @endif
+
+</span>
 
 @else
 

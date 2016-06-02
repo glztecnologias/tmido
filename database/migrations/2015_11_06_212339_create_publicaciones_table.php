@@ -26,13 +26,14 @@ class CreatePublicacionesTable extends Migration
             $table->integer('estado_id')->unsigned()->nullable();
 
 
-            $table->integer('act_megusta')->unsigned(); //0 inactivo 1 activo
-            $table->integer('act_comparte')->unsigned(); //0 inactivo 1 activo
-            $table->integer('act_valoracion')->unsigned();//0 inactivo 1 activo
-            $table->integer('act_comentarios')->unsigned();//0 inactivo 1 activo
-            $table->integer('act_comentario_recurso')->unsigned();//0 inactivo 1 activo
-            $table->integer('act_graficos')->unsigned();//0 inactivo 1 activo
-            $table->integer('act_evaluacion')->unsigned();//0 inactivo 1 activo
+            $table->string('act_megusta', 3); //off inactivo on activo
+            $table->string('act_comparte', 3); //off inactivo on activo
+            $table->string('act_valoracion', 3);//off inactivo on activo
+            $table->string('act_comentarios', 3);//off inactivo on activo
+            $table->string('act_graficos', 3);//off inactivo on activo
+            $table->string('act_evaluacion', 3);//off inactivo on activo
+            $table->string('act_recursos', 3);//off inactivo on activo
+            $table->string('act_regresiva', 3);//off inactivo on activo
 
 
             $table->timestamps();

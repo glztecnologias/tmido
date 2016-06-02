@@ -12,7 +12,7 @@
           <table class="ui celled table">
             <thead>
               <tr>
-              <th>Nombre</th>
+              <th>Codigo_Nombre</th>
               <th>Descripcion</th>
 
               <th style="width: 260px;">Aciones</th>
@@ -21,7 +21,7 @@
               <!--AQUI LA LISTA DE CATEGORIAS-->
               @forelse($tipo_evaluacion as $t_eval)
               <tr>
-              <td>{{ $t_eval->nombre }}</td>
+              <td>{{ $t_eval->clasificacion }}</td>
               <td>{{ $t_eval->descripcion }}</td>
               <td>
                 <form action="/admin/tipo_evaluacion/{{ $t_eval->id }}" method="post">

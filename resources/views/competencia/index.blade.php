@@ -7,61 +7,19 @@
       <h1>Competencias</h1>
       <br>
       <br>
-         <div class="ficha_competencia">
+        @foreach ($competencias as $competencia)
+          <div class="ficha_competencia">
+            <h3>{{ $competencia->nombre }}</h3><hr>
+            @foreach ($competencia->publicaciones as $publicacion)
+              <div class="ficha_competidor_">
+                <span class="foto_competidor"></span>
+                <span class="pje_competidor">{{ $publicacion->titulo }}</span>
+                <a href="#" class="boton_accion_competidor">Evalua o Vota</a>
+              </div>
+            @endforeach
+          </div>
+        @endforeach
 
-<h3>Titulo Competencia</h3>          <hr>
-
-              <div class="ficha_competidor_">
-                <span class="foto_competidor"></span>
-                <span class="pje_competidor"></span>
-                <a href="" class="boton_accion_competidor"><span>Evalua o Vota</span></a>
-              </div>
-              <div class="ficha_competidor_">
-                <span class="foto_competidor"></span>
-                <span class="pje_competidor"></span>
-                <a href="" class="boton_accion_competidor"><span>Evalua o Vota</span></a>
-              </div>
-              <div class="ficha_competidor_">
-                <span class="foto_competidor"></span>
-                <span class="pje_competidor"></span>
-                <a href="" class="boton_accion_competidor"><span>Evalua o Vota</span></a>
-              </div>
-              <div class="ficha_competidor_">
-                <span class="foto_competidor"></span>
-                <span class="pje_competidor"></span>
-                <a href="" class="boton_accion_competidor"><span>Evalua o Vota</span></a>
-              </div>
-              <div class="ficha_competidor_">
-                <span class="foto_competidor"></span>
-                <span class="pje_competidor"></span>
-                <a href="" class="boton_accion_competidor"><span>Evalua o Vota</span></a>
-              </div>
-              <div class="ficha_competidor_">
-                <span class="foto_competidor"></span>
-                <span class="pje_competidor"></span>
-                <a href="" class="boton_accion_competidor"><span>Evalua o Vota</span></a>
-              </div>
-              <div class="ficha_competidor_">
-                <span class="foto_competidor"></span>
-                <span class="pje_competidor"></span>
-                <a href="" class="boton_accion_competidor"><span>Evalua o Vota</span></a>
-              </div>
-              <div class="ficha_competidor_">
-                <span class="foto_competidor"></span>
-                <span class="pje_competidor"></span>
-                <a href="" class="boton_accion_competidor"><span>Evalua o Vota</span></a>
-              </div>
-              <div class="ficha_competidor_">
-                <span class="foto_competidor"></span>
-                <span class="pje_competidor"></span>
-                <a href="" class="boton_accion_competidor"><span>Evalua o Vota</span></a>
-              </div>
-              <div class="ficha_competidor_">
-                <span class="foto_competidor"></span>
-                <span class="pje_competidor"></span>
-                <a href="" class="boton_accion_competidor"><span>Evalua o Vota</span></a>
-              </div>
-        </div>
         <div id="homeRight">
           <section >
             <div id="graf1_ficha" style="max-width:250px;margin-left:35px; height:250px;">
@@ -128,62 +86,7 @@
 
         </script>
         </div>
-        <div class="ficha_competencia">
 
-         <h3>Titulo Competencia</h3>
-         <hr>
-
-             <div class="ficha_competidor_">
-               <span class="foto_competidor"></span>
-               <span class="pje_competidor"></span>
-               <a href="" class="boton_accion_competidor"><span>Evalua o Vota</span></a>
-             </div>
-             <div class="ficha_competidor_">
-               <span class="foto_competidor"></span>
-               <span class="pje_competidor"></span>
-               <a href="" class="boton_accion_competidor"><span>Evalua o Vota</span></a>
-             </div>
-             <div class="ficha_competidor_">
-               <span class="foto_competidor"></span>
-               <span class="pje_competidor"></span>
-               <a href="" class="boton_accion_competidor"><span>Evalua o Vota</span></a>
-             </div>
-             <div class="ficha_competidor_">
-               <span class="foto_competidor"></span>
-               <span class="pje_competidor"></span>
-               <a href="" class="boton_accion_competidor"><span>Evalua o Vota</span></a>
-             </div>
-             <div class="ficha_competidor_">
-               <span class="foto_competidor"></span>
-               <span class="pje_competidor"></span>
-               <a href="" class="boton_accion_competidor"><span>Evalua o Vota</span></a>
-             </div>
-             <div class="ficha_competidor_">
-               <span class="foto_competidor"></span>
-               <span class="pje_competidor"></span>
-               <a href="" class="boton_accion_competidor"><span>Evalua o Vota</span></a>
-             </div>
-             <div class="ficha_competidor_">
-               <span class="foto_competidor"></span>
-               <span class="pje_competidor"></span>
-               <a href="" class="boton_accion_competidor"><span>Evalua o Vota</span></a>
-             </div>
-             <div class="ficha_competidor_">
-               <span class="foto_competidor"></span>
-               <span class="pje_competidor"></span>
-               <a href="" class="boton_accion_competidor"><span>Evalua o Vota</span></a>
-             </div>
-             <div class="ficha_competidor_">
-               <span class="foto_competidor"></span>
-               <span class="pje_competidor"></span>
-               <a href="" class="boton_accion_competidor"><span>Evalua o Vota</span></a>
-             </div>
-             <div class="ficha_competidor_">
-               <span class="foto_competidor"></span>
-               <span class="pje_competidor"></span>
-               <a href="" class="boton_accion_competidor"><span>Evalua o Vota</span></a>
-             </div>
-       </div>
 
 
   </div>

@@ -1,6 +1,7 @@
 
 <div id="cinta" class="cintaHome">
   <div id="cintaBuscador">
+
     <form>
       <input name="search" type="text" id="search" class="cinInput" required>
       <select name="categoria" size="1" id="categoria" class="selectyze">
@@ -13,5 +14,14 @@
         <img src="/imag/boton_buscar.png" alt="" />
       </a>
     </form>
+
+    <div class="marquee up">
+@foreach($avisos as $aviso)
+      <p><a href="{{ $aviso->url }}">{{ $aviso->contenido }}</a></p>
+@endforeach
+<!--      <p><a href="">Atencion! Nueva competencia de canto...¡Participa!***********************hola</a></p>
+      <p><a href="">Bachelet baja 30% de aprobacion...jahsda skjsd askdjhasd kasdjaskjahdkjasd as</a></p>-->
+    </div>
+
   </div>
 </div>

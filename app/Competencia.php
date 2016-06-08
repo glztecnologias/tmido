@@ -14,4 +14,9 @@ class Competencia extends Model
     {
         return $this->hasOne('App\Evaluacion','competencia_id');
     }
+
+    public function publicaciones()
+    {
+      return $this->hasMany('App\Publicacion', 'competencia_id');
+    }
 }

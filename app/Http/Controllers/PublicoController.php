@@ -14,7 +14,9 @@ use App\Evaluacion as Evaluacion;
 use App\Tipo_evaluacion as Tipo_evaluacion;
 use App\Descriptor_evaluacion as Descriptor_evaluacion;
 use App\Item_evaluacion as Item_evaluacion;
-
+use App\Aviso as Aviso;
+use App\Pprivacidad as Pprivacidad;
+use App\Competencia as Competencia;
 class PublicoController extends Controller
 {
 
@@ -24,15 +26,17 @@ class PublicoController extends Controller
       $publicaciones = Publicacion::tomar_nueve_mas_visitados();
       $mas_val = Publicacion::tomar_dos_mas_valorados();
       $mas_megusta = Publicacion::tomar_dos_mas_me_gusta();
+      $avisos = Aviso::trae_avisos_activos();
       $categorias = Categoria::All();
       $usuarios_ranking = Cuenta_usuario::tomar_tres_ranking_participacion();
-      return view('publicaciones.index', compact('publicaciones','categorias','usuarios_ranking','mas_val','mas_megusta'));
+      return view('publicaciones.index', compact('publicaciones','categorias','usuarios_ranking','mas_val','mas_megusta','avisos'));
 
     }
 
     public function show($id)
     {
       //Pasar esto al Modelo...
+        $avisos = Aviso::trae_avisos_activos();
       $categorias = Categoria::All();
       $publicacion = Publicacion::find($id);
       $otras_pub_categoria = Publicacion::tomar_misma_categoria($publicacion->categoria_id,$id);
@@ -54,7 +58,7 @@ class PublicoController extends Controller
 
     if($publicacion->estado->nombre=="activo")
     {
-       return view('ficha.index', compact('evaluacion','publicacion','categorias','competidores','otras_pub_categoria','valoracion_pub','comentarios'));
+       return view('ficha.index', compact('evaluacion','publicacion','categorias','competidores','otras_pub_categoria','valoracion_pub','comentarios','avisos'));
     }
     else
     {
@@ -65,67 +69,76 @@ class PublicoController extends Controller
 
     public function muestra_registro()
     {
+        $avisos = Aviso::trae_avisos_activos();
       $categorias = Categoria::All();
       $usuarios_ranking = Cuenta_usuario::tomar_tres_ranking_participacion();
-      return view('registro.index', compact('categorias','usuarios_ranking'));
+      return view('registro.index', compact('categorias','usuarios_ranking','avisos'));
     }
 
 
     public function muestra_proyecto()
     {
+        $avisos = Aviso::trae_avisos_activos();
       $categorias = Categoria::All();
       $usuarios_ranking = Cuenta_usuario::tomar_tres_ranking_participacion();
-      return view('t-mido.index', compact('categorias','usuarios_ranking'));
+      return view('t-mido.index', compact('categorias','usuarios_ranking','avisos'));
       //return view('t-mido.index');
     }
 
     public function muestra_noticias()
     {
+        $avisos = Aviso::trae_avisos_activos();
       $categorias = Categoria::All();
       $usuarios_ranking = Cuenta_usuario::tomar_tres_ranking_participacion();
-      return view('noticias.index', compact('categorias','usuarios_ranking'));
+      return view('noticias.index', compact('categorias','usuarios_ranking','avisos'));
     }
 
     public function muestra_contacto()
     {
+        $avisos = Aviso::trae_avisos_activos();
       $categorias = Categoria::All();
       $usuarios_ranking = Cuenta_usuario::tomar_tres_ranking_participacion();
-      return view('contacto.index', compact('categorias','usuarios_ranking'));
+      return view('contacto.index', compact('categorias','usuarios_ranking','avisos'));
     }
     public function muestra_ranking()
     {
+        $avisos = Aviso::trae_avisos_activos();
       $categorias = Categoria::All();
       $usuarios_ranking = Cuenta_usuario::tomar_tres_ranking_participacion();
-      return view('ranking.index', compact('categorias','usuarios_ranking'));
+      return view('ranking.index', compact('categorias','usuarios_ranking','avisos'));
     }
     public function muestra_politicas()
     {
+      $avisos = Aviso::trae_avisos_activos();
       $categorias = Categoria::All();
       $usuarios_ranking = Cuenta_usuario::tomar_tres_ranking_participacion();
-      return view('politicas.index', compact('categorias','usuarios_ranking'));
+      $politicas = Pprivacidad::trae_politica();
+      return view('politicas.index', compact('categorias','usuarios_ranking','avisos','politicas'));
     }
 
     public function muestra_cuenta(Request $request) //Validar USUARIO ****
     {
+        $avisos = Aviso::trae_avisos_activos();
       $categorias = Categoria::All();
       $usuarios_ranking = Cuenta_usuario::tomar_tres_ranking_participacion();
 
       $usuario = session('usuario');  //Validar USUARIO ****
       $request->session()->put('usuario', $usuario); //Validar USUARIO ****
 
-      return view('cuenta.index', compact('categorias','usuarios_ranking'));
+      return view('cuenta.index', compact('categorias','usuarios_ranking','avisos'));
 
     }
 
     public function guarda_datos_cuenta(Request $request) //Validar
     {
+        $avisos = Aviso::trae_avisos_activos();
       $categorias = Categoria::All();
       $usuarios_ranking = Cuenta_usuario::tomar_tres_ranking_participacion();
 
       $usuario = session('usuario');  //Validar USUARIO ****
       $request->session()->put('usuario', $usuario); //Validar USUARIO ****
 
-      return view('cuenta.index', compact('categorias','usuarios_ranking'));
+      return view('cuenta.index', compact('categorias','usuarios_ranking','avisos'));
 
     }
 
@@ -221,6 +234,7 @@ class PublicoController extends Controller
 
     public function busqueda($categoria, $palabra_clave = null)
     {
+        $avisos = Aviso::trae_avisos_activos();
       $categorias = Categoria::All();
       $cat_id = Categoria::trae_id($categoria);
 
@@ -239,7 +253,7 @@ class PublicoController extends Controller
 
           }
 
-        return view('directorio.index', compact('publicaciones','categorias','cat_id'));
+        return view('directorio.index', compact('publicaciones','categorias','cat_id','avisos'));
     }
 
 public function comentar(Request $request)
@@ -421,8 +435,10 @@ public function evaluar_items(Request $request)
 
 public function muestra_competencia_categoria($cat)
 {
+  $avisos = Aviso::trae_avisos_activos();
   $categorias = Categoria::All();
-  return view('competencia.index', compact('categorias'));
+  $competencias = Competencia::where('tipo', '=', 'normal')->with('publicaciones')->get();
+  return view('competencia.index', compact('categorias','avisos', 'competencias'));
 
 }
 

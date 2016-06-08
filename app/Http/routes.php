@@ -23,6 +23,8 @@ Route::resource('/admin/tipo_recursos', 'Tipo_recursoController');
 Route::resource('/admin/recursos','RecursoController');
 Route::resource('/admin/tipo_evaluacion', 'Tipo_evaluacionController');
 Route::resource('/admin/evaluacion', 'EvaluacionController');
+Route::resource('/admin/avisos', 'AvisoController');
+Route::resource('/admin/politicas', 'PprivacidadController');
 Route::resource('/admin/evaluacion/{id?}/{id_com?}/create/','EvaluacionController@create');
 Route::resource('/admin', 'AdminController');
 // ********************************************************************

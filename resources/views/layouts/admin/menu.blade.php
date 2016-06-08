@@ -6,7 +6,8 @@
       <a class="item" id="estados" href="/admin/estados">Estados</a>
       <a class="item" id="categorias" href="/admin/categorias">Categorias</a>
       <a class="item" id="competencias" href="/admin/competencias">Competencias</a>
-
+     <a class="item" id="avisos" href="/admin/avisos">Avisos Marquesina</a>
+     <a class="item" id="politicas" href="/admin/politicas">Politicas de Privacidad</a>
       <a class="item" id="recursos" href="/admin/tipo_recursos">Tipo de Recursos</a>
       <a class="item" id="recursos" href="/admin/recursos">Recursos</a>
 
